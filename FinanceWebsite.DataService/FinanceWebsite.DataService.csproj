@@ -43,9 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FinanceWebsite.FinanceClient.YahooClient">
-      <HintPath>..\Build\FinanceWebsite.FinanceClient.YahooClient.dll</HintPath>
-    </Reference>
     <Reference Include="FinanceWebsite.Library.BusinessLogic">
       <HintPath>..\Build\FinanceWebsite.Library.BusinessLogic.dll</HintPath>
     </Reference>

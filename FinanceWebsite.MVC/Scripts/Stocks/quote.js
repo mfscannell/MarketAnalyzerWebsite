@@ -1,9 +1,11 @@
 ﻿function getStockHistory() {
     var tickerSymbol = $('#h2TickerSymbol').text();
+    var beginDate = $('#edtChartBeginDate').val();
+    var endDate = $('#edtChartEndDate').val();
     var url = 'http://localhost:63993/dataApi/stocks/history'
     url += '?tickerSymbol=' + tickerSymbol;
-    url += '&beginDate=' + $('#edtChartBeginDate').val();
-    url += '&endDate=' + $('#edtChartEndDate').val();
+    url += '&beginDate=' + beginDate;
+    url += '&endDate=' + endDate;
 
     var uppers = '';
 
@@ -37,8 +39,6 @@
         dataType: 'json',
         success: function (result) {
             var something6 = 5;
-            //var ohlc = [];
-            //var volume = [];
             var groupingUnits = [[
                 'day',
                 [1]
@@ -62,46 +62,32 @@
                 });
             }
 
-            //for (var i = 0; i < result.length; i++) {
-            //    result[i].NewDate = new Date(parseInt(result[i].Date.replace('/Date(', '').replace(')/', ''), 10));
-
-            //    ohlc.push([
-            //        Date.parse(result[i].Date),
-            //        result[i].Open,
-            //        result[i].High,
-            //        result[i].Low,
-            //        result[i].AdjClose
-            //    ]);
-
-            //    volume.push([
-            //        Date.parse(result[i].Date),
-            //        result[i].Volume
-            //    ]);
-            //}
-
             Highcharts.stockChart('stockContainer', {
                 navigator: {
                     enabled: false
                 },
-
                 rangeSelector: {
                     enabled: false
                 },
-
                 plotOptions: {
                     candlestick: {
                         color: 'red',
                         upColor: 'green'
                     }
                 },
-
                 scrollBar: {
                     enabled: false
                 },
                 title: {
                     text: tickerSymbol
                 },
-
+                xAxis: [{
+                    min: new Date(beginDate).getTime(),
+                    max: new Date(endDate).getTime()
+                }, {
+                    min: new Date(beginDate).getTime(),
+                    max: new Date(endDate).getTime()
+                }],
                 yAxis: [{
                     labels: {
                         align: 'left',
@@ -128,28 +114,10 @@
                     offset: 0,
                     lineWidth: 2
                 }],
-
                 tooltip: {
                     split: true
                 },
-
                 series: series
-                //    [{
-                //    type: 'candlestick',
-                //    name: tickerSymbol,
-                //    data: ohlc,
-                //    dataGrouping: {
-                //        units: groupingUnits
-                //    }
-                //}, {
-                //    type: 'column',
-                //    name: 'Volume',
-                //    data: volume,
-                //    yAxis: 1, // For new chart below first
-                //    dataGrouping: {
-                //        units: groupingUnits
-                //    }
-                //}]
             });
         },
         error: function (error) {

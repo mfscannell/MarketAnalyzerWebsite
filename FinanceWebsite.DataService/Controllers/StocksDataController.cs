@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-using FinanceWebsite.FinanceClient.YahooClient;
-using FinanceWebsite.FinanceClient.YahooClient.Models;
-
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
 using FinanceWebsite.Library.BusinessLogic.Responses;
@@ -27,19 +24,23 @@ namespace FinanceWebsite.DataService.Controllers
         {
             var parsedUppers = JsonConvert.DeserializeObject<List<TechnicalIndicator>>(uppers);
 
-            //var result = await Historical.GetPriceAsync(
-            //            tickerSymbol,
-            //            beginDate,
-            //            endDate);
+            var technicalAnalysisBeginDateDifference = 0;
 
-            //return result;
+            foreach (var upper in parsedUppers)
+            {
+                var upperPrevDays = upper.GetNumPreviousCalendarDays();
+                if (upperPrevDays < technicalAnalysisBeginDateDifference)
+                {
+                    technicalAnalysisBeginDateDifference = upperPrevDays;
+                }
+            }
 
             var request = new StockChartRequest
             {
                 TickerSymbol = tickerSymbol,
                 ChartBeginDate = beginDate,
                 ChartEndDate = endDate,
-                TechnicalAnalysisBeginDate = beginDate,
+                TechnicalAnalysisBeginDate = beginDate.AddDays(technicalAnalysisBeginDateDifference),
                 TechnicalAnalysisEndDate = endDate.AddDays(1)
             };
             var stockManager = new StockManager();
