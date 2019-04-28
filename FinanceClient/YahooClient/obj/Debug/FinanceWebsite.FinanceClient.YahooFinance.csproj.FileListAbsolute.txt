@@ -1,0 +1,7 @@
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.FinanceClient.YahooClient.dll
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.FinanceClient.YahooClient.pdb
+C:\eecsCSharp\FinanceWebsite\FinanceClient\YahooClient\obj\Debug\FinanceWebsite.FinanceClient.YahooFinance.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\FinanceClient\YahooClient\obj\Debug\FinanceWebsite.FinanceClient.YahooFinance.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\FinanceClient\YahooClient\obj\Debug\FinanceWebsite.FinanceClient.YahooFinance.csproj.CopyComplete
+C:\eecsCSharp\FinanceWebsite\FinanceClient\YahooClient\obj\Debug\FinanceWebsite.FinanceClient.YahooClient.dll
+C:\eecsCSharp\FinanceWebsite\FinanceClient\YahooClient\obj\Debug\FinanceWebsite.FinanceClient.YahooClient.pdb

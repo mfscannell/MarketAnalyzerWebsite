@@ -1,0 +1,7 @@
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Library.BusinessLogic.dll
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Library.BusinessLogic.pdb
+C:\eecsCSharp\FinanceWebsite\Library\BusinessLogic\obj\Debug\FinanceWebsite.Library.BusinessLogic.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\Library\BusinessLogic\obj\Debug\FinanceWebsite.Library.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\Library\BusinessLogic\obj\Debug\FinanceWebsite.Library.BusinessLogic.csproj.CopyComplete
+C:\eecsCSharp\FinanceWebsite\Library\BusinessLogic\obj\Debug\FinanceWebsite.Library.BusinessLogic.dll
+C:\eecsCSharp\FinanceWebsite\Library\BusinessLogic\obj\Debug\FinanceWebsite.Library.BusinessLogic.pdb

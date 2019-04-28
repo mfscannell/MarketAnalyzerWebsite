@@ -1,0 +1,24 @@
+﻿@model FinanceWebsite.MVC.Models.StockQuote
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Finance Index</h2>
+
+@using (Html.BeginForm("Quote", "Stocks", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.TickerSymbol)
+        @Html.TextBoxFor(m => m.TickerSymbol, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TickerSymbol)
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

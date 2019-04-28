@@ -1,0 +1,10 @@
+C:\eecsCSharp\FinanceWebsite\Build\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\eecsCSharp\FinanceWebsite\Build\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\eecsCSharp\FinanceWebsite\Build\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\eecsCSharp\FinanceWebsite\Build\UnitTests.FinanceWebsite.Library.BusinessLogicTests.dll
+C:\eecsCSharp\FinanceWebsite\Build\UnitTests.FinanceWebsite.Library.BusinessLogicTests.pdb
+C:\eecsCSharp\FinanceWebsite\UnitTests\Library\BusinessLogicTests\obj\Debug\UnitTests.FinanceWebsite.Library.BusinessLogic.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\UnitTests\Library\BusinessLogicTests\obj\Debug\UnitTests.FinanceWebsite.Library.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\UnitTests\Library\BusinessLogicTests\obj\Debug\UnitTests.FinanceWebsite.Library.BusinessLogic.csproj.CopyComplete
+C:\eecsCSharp\FinanceWebsite\UnitTests\Library\BusinessLogicTests\obj\Debug\UnitTests.FinanceWebsite.Library.BusinessLogicTests.dll
+C:\eecsCSharp\FinanceWebsite\UnitTests\Library\BusinessLogicTests\obj\Debug\UnitTests.FinanceWebsite.Library.BusinessLogicTests.pdb
