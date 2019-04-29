@@ -9,7 +9,7 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
     /// <summary>
     /// This class is used to determine the Simple Moving Average for a series of numbers.
     /// </summary>
-    public class SimpleMovingAverage : ITechnicalIndicatorCalculator
+    public class SimpleMovingAverageCalculator : ITechnicalIndicatorCalculator
     {
         /// <summary>
         /// All the values used for calculating the moving average.
@@ -33,7 +33,7 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
         #region Constructors
 
-        public SimpleMovingAverage(int numRecords)
+        public SimpleMovingAverageCalculator(int numRecords)
         {
             this.values = new double[numRecords];
             this.indexOfOldestValue = 0;
@@ -43,7 +43,7 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
         #endregion
 
-        #region Internal Methods
+        #region Public Methods
 
         /// <summary>
         /// Calculates the Simple Moving Average based upon the latest value in a series of values.

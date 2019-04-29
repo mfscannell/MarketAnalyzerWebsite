@@ -12,8 +12,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
 
         public StockChartRequest()
         {
-            this.Lowers = new List<TechnicalIndicator>();
-            this.Uppers = new List<TechnicalIndicator>();
+            this.Lowers = new List<TechnicalIndicatorRequest>();
+            this.Uppers = new List<TechnicalIndicatorRequest>();
         }
 
         #endregion
@@ -30,9 +30,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
 
         public string TickerSymbol { get; set; }
 
-        public List<TechnicalIndicator> Uppers { get; set; }
+        public List<TechnicalIndicatorRequest> Uppers { get; set; }
 
-        public List<TechnicalIndicator> Lowers { get; set; }
+        public List<TechnicalIndicatorRequest> Lowers { get; set; }
 
         #endregion
     }

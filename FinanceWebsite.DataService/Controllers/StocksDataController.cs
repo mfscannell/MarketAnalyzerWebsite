@@ -22,7 +22,7 @@ namespace FinanceWebsite.DataService.Controllers
         [Route("DataApi/stocks/history")]
         public async Task<List<StockSeries>> GetStockHistory(string tickerSymbol, DateTime beginDate, DateTime endDate, string uppers)
         {
-            var parsedUppers = JsonConvert.DeserializeObject<List<TechnicalIndicator>>(uppers);
+            var parsedUppers = JsonConvert.DeserializeObject<List<TechnicalIndicatorRequest>>(uppers);
 
             var technicalAnalysisBeginDateDifference = 0;
 

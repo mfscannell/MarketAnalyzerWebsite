@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FinanceWebsite.Library.BusinessLogic.Enums;
+
 namespace FinanceWebsite.Library.BusinessLogic.Responses
 {
     public class StockSeries
@@ -12,6 +14,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses
 
         public StockSeries()
         {
+            DashStyle = Enums.DashStyle.SOLID;
             Type = string.Empty;
             Name = string.Empty;
             Data = new List<List<object>>();
@@ -21,6 +24,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses
         #endregion
 
         #region Public Properties
+
+        public string DashStyle { get; set; }
 
         public string Type { get; set; }
 

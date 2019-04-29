@@ -16,7 +16,7 @@ namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicator
         [TestMethod]
         public void TestGetMovingAverage5()
         {
-            var sma = new SimpleMovingAverage(5);
+            var sma = new SimpleMovingAverageCalculator(5);
 
             var average = sma.GetMovingAverage(10);
             Assert.AreEqual(0, average, 0.001);

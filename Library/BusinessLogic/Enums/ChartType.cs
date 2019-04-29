@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceWebsite.Library.BusinessLogic.Responses
+namespace FinanceWebsite.Library.BusinessLogic.Enums
 {
-    public abstract class StockData
+    public class ChartType
     {
+        public const string CHART_TYPE_LINE = "line";
     }
 }

@@ -9,6 +9,7 @@ using FinanceWebsite.Library.BusinessLogic.Responses;
 using FinanceWebsite.FinanceClient.YahooClient;
 using FinanceWebsite.FinanceClient.YahooClient.Models;
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
+using FinanceWebsite.Library.BusinessLogic.Factories;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 {
@@ -60,33 +61,25 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
             stockSeries.Add(ohlcSeries);
             stockSeries.Add(volumeSeries);
 
-            // TODO add series for Uppers and lowers
             foreach (var upper in request.Uppers)
             {
-                var data = new List<List<object>>();
-
-                var calculator = upper.GetTechnicalCalculator();
+                var iTechnicalIndicator = TechnicalIndicatorCalculatorFactory.GetTechnicalCalculator(upper);
+                var upperSeries = StockSeriesFactory.InitializeStockSeries(upper);
 
                 foreach (var tradingDay in yahooHistory)
                 {
-                    // TODO loop on trading days and get technical indicator value and
-                    // add to data.
-                    // NOTE:  upper could be multiple lines and would need multiple
-                    // upper StockSeries objects to add to list of stock series.
-                    var techValue = calculator.GetTechnicalIndicatorValue(tradingDay.AdjClose);
+                    var techValue = iTechnicalIndicator.GetTechnicalIndicatorValue(tradingDay.AdjClose);
 
-                    data.Add(new List<object> { tradingDay.Date, techValue[0] });
+                    for (var i = 0; i < upperSeries.Length; i++)
+                    {
+                        upperSeries[i].Data.Add(new List<object> { tradingDay.Date, techValue[i] });
+                    }
                 }
 
-                var upperSeries = new StockSeries
+                for (var i = 0; i < upperSeries.Length; i++)
                 {
-                    Data = data,
-                    Name = upper.GetName(),
-                    Type = upper.GetChartType(),
-                    YAxis = 0
-                };
-
-                stockSeries.Add(upperSeries);
+                    stockSeries.Add(upperSeries[i]);
+                }
             }
 
             return stockSeries;

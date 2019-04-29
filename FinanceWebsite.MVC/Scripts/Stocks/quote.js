@@ -23,14 +23,9 @@
         uppers += '%22,%22Params%22:%22' + indicatorParameters;
 
         uppers += '%22}'
-
-
-        var something2 = 5;
     });
 
     url += '&uppers=[' + uppers + ']';
-
-    var something3 = 5;
 
     $.ajax({
         type: 'GET',
@@ -52,7 +47,7 @@
                     result[i].Data[j][0] = Date.parse(result[i].Data[j][0]);
                 }
 
-                series.push({
+                var chartSeries = {
                     type: result[i].Type,
                     name: result[i].Name,
                     data: result[i].Data,
@@ -60,7 +55,13 @@
                         units: groupingUnits
                     },
                     yAxis: result[i].YAxis
-                });
+                };
+
+                if (chartSeries.type == 'line') {
+                    chartSeries.lineWidth = 1;
+                }
+
+                series.push(chartSeries);
             }
 
             // NOTE:  x-axis and y-axis need to change for multiple lower indicators
