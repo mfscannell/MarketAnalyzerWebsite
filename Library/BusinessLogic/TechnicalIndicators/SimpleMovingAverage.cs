@@ -9,12 +9,12 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
     /// <summary>
     /// This class is used to determine the Simple Moving Average for a series of numbers.
     /// </summary>
-    public class SimpleMovingAverage
+    public class SimpleMovingAverage : ITechnicalIndicatorCalculator
     {
         /// <summary>
         /// All the values used for calculating the moving average.
         /// </summary>
-        float[] values;
+        double[] values;
 
         /// <summary>
         /// The index in values where the oldest value was inserted.
@@ -29,13 +29,13 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         /// <summary>
         /// The summation of all items in values.
         /// </summary>
-        float summation;
+        double summation;
 
         #region Constructors
 
         public SimpleMovingAverage(int numRecords)
         {
-            this.values = new float[numRecords];
+            this.values = new double[numRecords];
             this.indexOfOldestValue = 0;
             this.numValuesInserted = 0;
             this.summation = 0;
@@ -54,7 +54,7 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         /// <returns>
         /// The Simple Moving Average in the series.
         /// </returns>
-        public float GetMovingAverage(float latestValue)
+        public double[] GetTechnicalIndicatorValue(double latestValue)
         {
             this.summation = this.summation - this.values[this.indexOfOldestValue] + latestValue;
 
@@ -73,10 +73,10 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
             if (this.numValuesInserted == this.values.Length)
             {
-                return this.summation / this.values.Length;
+                return new double[] { this.summation / this.values.Length };
             }
 
-            return 0;
+            return new double[] { 0 };
         }
 
         #endregion

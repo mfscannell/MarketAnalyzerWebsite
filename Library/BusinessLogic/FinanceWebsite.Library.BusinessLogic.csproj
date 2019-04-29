@@ -54,6 +54,7 @@
     <Compile Include="Responses\StockSeries.cs" />
     <Compile Include="Responses\VolumeData.cs" />
     <Compile Include="Managers\Stocks\StockManager.cs" />
+    <Compile Include="TechnicalIndicators\ITechnicalIndicatorCalculator.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverage.cs" />
   </ItemGroup>
   <ItemGroup />

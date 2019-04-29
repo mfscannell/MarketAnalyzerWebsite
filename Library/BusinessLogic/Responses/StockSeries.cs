@@ -14,7 +14,6 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses
         {
             Type = string.Empty;
             Name = string.Empty;
-            //Data = new List<StockData>();
             Data = new List<List<object>>();
             YAxis = 0;
         }
@@ -27,7 +26,6 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses
 
         public string Name { get; set; }
 
-        //public List<StockData> Data { get; set; }
         public List<List<Object>> Data { get; set; }
 
         public int YAxis { get; set; }

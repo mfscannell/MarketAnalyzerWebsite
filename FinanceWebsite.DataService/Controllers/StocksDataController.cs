@@ -29,6 +29,7 @@ namespace FinanceWebsite.DataService.Controllers
             foreach (var upper in parsedUppers)
             {
                 var upperPrevDays = upper.GetNumPreviousCalendarDays();
+
                 if (upperPrevDays < technicalAnalysisBeginDateDifference)
                 {
                     technicalAnalysisBeginDateDifference = upperPrevDays;
@@ -41,7 +42,8 @@ namespace FinanceWebsite.DataService.Controllers
                 ChartBeginDate = beginDate,
                 ChartEndDate = endDate,
                 TechnicalAnalysisBeginDate = beginDate.AddDays(technicalAnalysisBeginDateDifference),
-                TechnicalAnalysisEndDate = endDate.AddDays(1)
+                TechnicalAnalysisEndDate = endDate.AddDays(1),
+                Uppers = parsedUppers
             };
             var stockManager = new StockManager();
             var result = await stockManager.GetStockSeries(request);

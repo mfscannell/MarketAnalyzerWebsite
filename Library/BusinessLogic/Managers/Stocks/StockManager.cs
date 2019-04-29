@@ -8,6 +8,7 @@ using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Responses;
 using FinanceWebsite.FinanceClient.YahooClient;
 using FinanceWebsite.FinanceClient.YahooClient.Models;
+using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 {
@@ -38,16 +39,6 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 
             foreach (var tradingDay in yahooHistory)
             {
-                //ohlcSeries.Data.Add(
-                //    new OhlcData
-                //    {
-                //        Date = tradingDay.Date,
-                //        Open = tradingDay.Open,
-                //        High = tradingDay.High,
-                //        Low = tradingDay.Low,
-                //        Close = tradingDay.AdjClose
-                //    });
-
                 ohlcSeries.Data.Add(
                     new List<Object>
                     {
@@ -58,12 +49,6 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
                         tradingDay.AdjClose
                     });
 
-                //volumeSeries.Data.Add(
-                //    new VolumeData
-                //    {
-                //        Date = tradingDay.Date,
-                //        Volume = tradingDay.Volume
-                //    });
                 volumeSeries.Data.Add(
                     new List<Object>
                     {
@@ -76,6 +61,33 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
             stockSeries.Add(volumeSeries);
 
             // TODO add series for Uppers and lowers
+            foreach (var upper in request.Uppers)
+            {
+                var data = new List<List<object>>();
+
+                var calculator = upper.GetTechnicalCalculator();
+
+                foreach (var tradingDay in yahooHistory)
+                {
+                    // TODO loop on trading days and get technical indicator value and
+                    // add to data.
+                    // NOTE:  upper could be multiple lines and would need multiple
+                    // upper StockSeries objects to add to list of stock series.
+                    var techValue = calculator.GetTechnicalIndicatorValue(tradingDay.AdjClose);
+
+                    data.Add(new List<object> { tradingDay.Date, techValue[0] });
+                }
+
+                var upperSeries = new StockSeries
+                {
+                    Data = data,
+                    Name = upper.GetName(),
+                    Type = upper.GetChartType(),
+                    YAxis = 0
+                };
+
+                stockSeries.Add(upperSeries);
+            }
 
             return stockSeries;
         }

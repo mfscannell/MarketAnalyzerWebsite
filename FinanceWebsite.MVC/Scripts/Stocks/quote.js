@@ -45,6 +45,7 @@
             ]];
 
             var series = [];
+            var yAxis = [];
 
             for (var i = 0; i < result.length; i++) {
                 for (var j = 0; j < result[i].Data.length; j++) {
@@ -61,6 +62,9 @@
                     yAxis: result[i].YAxis
                 });
             }
+
+            // NOTE:  x-axis and y-axis need to change for multiple lower indicators
+            
 
             Highcharts.stockChart('stockContainer', {
                 navigator: {
@@ -82,9 +86,6 @@
                     text: tickerSymbol
                 },
                 xAxis: [{
-                    min: new Date(beginDate).getTime(),
-                    max: new Date(endDate).getTime()
-                }, {
                     min: new Date(beginDate).getTime(),
                     max: new Date(endDate).getTime()
                 }],
