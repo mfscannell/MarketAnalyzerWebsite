@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
-using FinanceWebsite.Library.BusinessLogic.Responses;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
 namespace FinanceWebsite.DataService.Controllers

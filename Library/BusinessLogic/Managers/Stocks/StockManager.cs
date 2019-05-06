@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.FinanceClient.YahooClient;
-using FinanceWebsite.FinanceClient.YahooClient.Models;
-using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 using FinanceWebsite.Library.BusinessLogic.Factories;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
