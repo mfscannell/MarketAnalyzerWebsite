@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceWebsite.Library.BusinessLogic.Enums
 {
-    public class TechnicalIndicatorType
+    public class StockChartSeriesType
     {
         #region Public Constants
 
@@ -14,7 +14,11 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string EMA = "EMA";
 
+        public const string PRICE = "Price";
+
         public const string SMA = "SMA";
+
+        public const string VOLUME = "Volume";
 
         #endregion
     }

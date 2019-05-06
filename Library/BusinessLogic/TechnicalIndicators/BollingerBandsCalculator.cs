@@ -4,18 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models;
+
 namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 {
-    public class BollingerBandsCalculator : ITechnicalIndicatorCalculator
+    public class BollingerBandsCalculator
     {
+        #region Private Fields
+
+        private SimpleMovingAverageCalculator smaCalculator;
+
+        private int numStandardDeviations;
+
+        #endregion
+
+        #region Constructors
+
         public BollingerBandsCalculator(int days, int numStandardDeviations)
         {
-
+            this.smaCalculator = new SimpleMovingAverageCalculator(days);
+            this.numStandardDeviations = numStandardDeviations;
         }
 
-        public double[] GetTechnicalIndicatorValue(double latestValue)
+        #endregion
+
+        #region Public Methods
+
+        public BollingerBands CalculateBollingerBands(double latestValue)
         {
-            return new double[3] { 0, 0, 0 };
+            var avg = this.smaCalculator.CalculateMovingAverage(latestValue);
+            var stdDev = this.smaCalculator.GetStandardDeviation();
+
+            return new BollingerBands
+            {
+                MovingAverageValue = avg,
+                UpperBandValue = avg + this.numStandardDeviations * stdDev,
+                LowerBandValue = avg - this.numStandardDeviations * stdDev
+            };
         }
+
+        #endregion
     }
 }

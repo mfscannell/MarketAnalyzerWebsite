@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
-namespace FinanceWebsite.Library.BusinessLogic.Responses
+namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 {
-    public class StockSeries
+    public class ChartSeries
     {
         #region Constructors and Destructors
 
-        public StockSeries()
+        public ChartSeries()
         {
             DashStyle = Enums.DashStyle.SOLID;
             Type = string.Empty;

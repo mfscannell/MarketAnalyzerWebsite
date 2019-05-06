@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
 using FinanceWebsite.Library.BusinessLogic.Responses;
+using FinanceWebsite.Library.BusinessLogic.Enums;
 
 namespace FinanceWebsite.DataService.Controllers
 {
@@ -20,9 +21,9 @@ namespace FinanceWebsite.DataService.Controllers
         [EnableCors(origins: "http://localhost:58607", headers: "*", methods: "*")]
         [HttpGet]
         [Route("DataApi/stocks/history")]
-        public async Task<List<StockSeries>> GetStockHistory(string tickerSymbol, DateTime beginDate, DateTime endDate, string uppers)
+        public async Task<List<ChartSeries>> GetStockHistory(string tickerSymbol, DateTime beginDate, DateTime endDate, string uppers)
         {
-            var parsedUppers = JsonConvert.DeserializeObject<List<TechnicalIndicatorRequest>>(uppers);
+            var parsedUppers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(uppers);
 
             var technicalAnalysisBeginDateDifference = 0;
 
@@ -38,15 +39,32 @@ namespace FinanceWebsite.DataService.Controllers
 
             var request = new StockChartRequest
             {
-                TickerSymbol = tickerSymbol,
-                ChartBeginDate = beginDate,
-                ChartEndDate = endDate,
-                TechnicalAnalysisBeginDate = beginDate.AddDays(technicalAnalysisBeginDateDifference),
-                TechnicalAnalysisEndDate = endDate.AddDays(1),
-                Uppers = parsedUppers
+                StockHistoryDataRequest = new StockHistoryDataRequest
+                {
+                    ChartBeginDate = beginDate,
+                    ChartEndDate = endDate,
+                    TechnicalAnalysisBeginDate = beginDate.AddDays(technicalAnalysisBeginDateDifference),
+                    TechnicalAnalysisEndDate = endDate.AddDays(1),
+                    TickerSymbol = tickerSymbol
+                },
+                StockChartSeriesRequest = new List<StockChartSeriesRequest>
+                {
+                    new StockChartSeriesRequest
+                    {
+                        Type = StockChartSeriesType.PRICE,
+                        Params = string.Empty
+                    },
+                    new StockChartSeriesRequest
+                    {
+                        Type = StockChartSeriesType.VOLUME,
+                        Params = string.Empty
+                    }
+                }
             };
+
+            request.StockChartSeriesRequest.AddRange(parsedUppers);
             var stockManager = new StockManager();
-            var result = await stockManager.GetStockSeries(request);
+            var result = await stockManager.GetStockChartSeries(request);
 
             return result;
         }

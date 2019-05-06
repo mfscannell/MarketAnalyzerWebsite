@@ -9,27 +9,31 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
     /// <summary>
     /// This class is used to determine the Simple Moving Average for a series of numbers.
     /// </summary>
-    public class SimpleMovingAverageCalculator : ITechnicalIndicatorCalculator
+    public class SimpleMovingAverageCalculator
     {
+        #region Private Fields
+
         /// <summary>
         /// All the values used for calculating the moving average.
         /// </summary>
-        double[] values;
+        private double[] values;
 
         /// <summary>
         /// The index in values where the oldest value was inserted.
         /// </summary>
-        int indexOfOldestValue;
+        private int indexOfOldestValue;
 
         /// <summary>
         /// The number of values inserted so far.
         /// </summary>
-        int numValuesInserted;
+        private int numValuesInserted;
 
         /// <summary>
         /// The summation of all items in values.
         /// </summary>
-        double summation;
+        private double summation;
+
+        #endregion
 
         #region Constructors
 
@@ -54,7 +58,7 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         /// <returns>
         /// The Simple Moving Average in the series.
         /// </returns>
-        public double[] GetTechnicalIndicatorValue(double latestValue)
+        public double CalculateMovingAverage(double latestValue)
         {
             this.summation = this.summation - this.values[this.indexOfOldestValue] + latestValue;
 
@@ -73,10 +77,29 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
             if (this.numValuesInserted == this.values.Length)
             {
-                return new double[] { this.summation / this.values.Length };
+                return this.summation / this.values.Length;
             }
 
-            return new double[] { 0 };
+            return 0;
+        }
+
+        public double GetStandardDeviation()
+        {
+            if (this.numValuesInserted < this.values.Length)
+            {
+                return 0;
+            }
+
+            var average = this.values.Average();
+
+            double sum = 0;
+
+            foreach (var value in this.values)
+            {
+                sum = sum + Math.Pow(value - average, 2);
+            }
+
+            return Math.Pow(sum / this.values.Length, 0.5);
         }
 
         #endregion

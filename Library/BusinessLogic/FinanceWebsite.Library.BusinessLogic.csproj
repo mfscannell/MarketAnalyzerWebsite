@@ -47,17 +47,23 @@
   <ItemGroup>
     <Compile Include="Enums\ChartType.cs" />
     <Compile Include="Enums\DashStyle.cs" />
-    <Compile Include="Enums\TechnicalIndicatorType.cs" />
-    <Compile Include="Factories\StockSeriesFactory.cs" />
-    <Compile Include="Factories\TechnicalIndicatorCalculatorFactory.cs" />
+    <Compile Include="Enums\StockChartSeriesType.cs" />
+    <Compile Include="Factories\StockChartSeriesFactory.cs" />
     <Compile Include="Interfaces\IFinanceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\StockChartRequest.cs" />
-    <Compile Include="Requests\TechnicalIndicatorRequest.cs" />
-    <Compile Include="Responses\StockSeries.cs" />
+    <Compile Include="Requests\StockChartSeriesRequest.cs" />
+    <Compile Include="Requests\StockHistoryDataRequest.cs" />
+    <Compile Include="Responses\ChartSeries\ChartSeries.cs" />
     <Compile Include="Managers\Stocks\StockManager.cs" />
+    <Compile Include="Responses\ChartSeries\LowerBollingerBandChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\MiddleBollingerBandChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\PriceChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\SimpleMovingAverageChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\UpperBollingerBandChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
     <Compile Include="TechnicalIndicators\BollingerBandsCalculator.cs" />
-    <Compile Include="TechnicalIndicators\ITechnicalIndicatorCalculator.cs" />
+    <Compile Include="TechnicalIndicators\Models\BollingerBands.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
   </ItemGroup>
   <ItemGroup />

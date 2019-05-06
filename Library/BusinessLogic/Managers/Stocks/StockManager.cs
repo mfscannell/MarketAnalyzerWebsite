@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Requests;
-using FinanceWebsite.Library.BusinessLogic.Responses;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.FinanceClient.YahooClient;
 using FinanceWebsite.FinanceClient.YahooClient.Models;
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 using FinanceWebsite.Library.BusinessLogic.Factories;
+using FinanceWebsite.Library.BusinessLogic.Enums;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 {
@@ -24,65 +25,38 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 
         #endregion
 
+        #region Public Static Methods
+
+        public static List<string> GetAvailableUpperTechnicalIndicators()
+        {
+            return new List<string>
+            {
+                StockChartSeriesType.BOLLINGER_BANDS,
+                StockChartSeriesType.SMA
+            };
+        }
+
+        #endregion
+
         #region Public Methods
 
-        public async Task<List<StockSeries>> GetStockSeries(StockChartRequest request)
+        public async Task<List<ChartSeries>> GetStockChartSeries(StockChartRequest request)
         {
             var yahooHistory = await Historical.GetPriceAsync(
-                request.TickerSymbol, 
-                request.TechnicalAnalysisBeginDate, 
-                request.TechnicalAnalysisEndDate);
+                request.StockHistoryDataRequest.TickerSymbol, 
+                request.StockHistoryDataRequest.TechnicalAnalysisBeginDate, 
+                request.StockHistoryDataRequest.TechnicalAnalysisEndDate);
+            var stockChartSeries = new List<ChartSeries>();
+            var chartSeriesFactory = new StockChartSeriesFactory();
 
-            var stockSeries = new List<StockSeries>();
-
-            var ohlcSeries = new StockSeries { Type = "candlestick", Name = request.TickerSymbol, YAxis = 0 };
-            var volumeSeries = new StockSeries { Type = "column", Name = "Volume", YAxis = 1 };
-
-            foreach (var tradingDay in yahooHistory)
+            foreach (var chartSeriesRequest in request.StockChartSeriesRequest)
             {
-                ohlcSeries.Data.Add(
-                    new List<Object>
-                    {
-                        tradingDay.Date,
-                        tradingDay.Open,
-                        tradingDay.High,
-                        tradingDay.Low,
-                        tradingDay.AdjClose
-                    });
-
-                volumeSeries.Data.Add(
-                    new List<Object>
-                    {
-                        tradingDay.Date,
-                        tradingDay.Volume
-                    });
+                stockChartSeries.AddRange(
+                    chartSeriesFactory.GenerateChartSeries(
+                        chartSeriesRequest, yahooHistory));
             }
 
-            stockSeries.Add(ohlcSeries);
-            stockSeries.Add(volumeSeries);
-
-            foreach (var upper in request.Uppers)
-            {
-                var iTechnicalIndicator = TechnicalIndicatorCalculatorFactory.GetTechnicalCalculator(upper);
-                var upperSeries = StockSeriesFactory.InitializeStockSeries(upper);
-
-                foreach (var tradingDay in yahooHistory)
-                {
-                    var techValue = iTechnicalIndicator.GetTechnicalIndicatorValue(tradingDay.AdjClose);
-
-                    for (var i = 0; i < upperSeries.Length; i++)
-                    {
-                        upperSeries[i].Data.Add(new List<object> { tradingDay.Date, techValue[i] });
-                    }
-                }
-
-                for (var i = 0; i < upperSeries.Length; i++)
-                {
-                    stockSeries.Add(upperSeries[i]);
-                }
-            }
-
-            return stockSeries;
+            return stockChartSeries;
         }
 
         #endregion

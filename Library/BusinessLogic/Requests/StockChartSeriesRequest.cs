@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
-using FinanceWebsite.Library.BusinessLogic.Responses;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
 namespace FinanceWebsite.Library.BusinessLogic.Requests
 {
-    public class TechnicalIndicatorRequest
+    public class StockChartSeriesRequest
     {
         #region Public Properties
 
@@ -29,8 +27,12 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
             {
                 case StockChartSeriesType.EMA:
                     return int.Parse(this.Params) * -2;
+                case StockChartSeriesType.PRICE:
+                    return 0;
                 case StockChartSeriesType.SMA:
                     return int.Parse(this.Params) * -2;
+                case StockChartSeriesType.VOLUME:
+                    return 0;
                 default:
                     return 0;
             }

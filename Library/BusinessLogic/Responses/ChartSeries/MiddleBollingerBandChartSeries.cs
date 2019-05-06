@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using FinanceWebsite.Library.BusinessLogic.Enums;
+
+namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
+{
+    public class MiddleBollingerBandChartSeries : ChartSeries
+    {
+        #region Constructors
+
+        public MiddleBollingerBandChartSeries() : base()
+        {
+            this.Name = "Middle Bollinger Band";
+            this.Type = ChartType.CHART_TYPE_LINE;
+            this.DashStyle = Enums.DashStyle.DOT;
+        }
+
+        #endregion
+    }
+}

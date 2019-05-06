@@ -11,16 +11,16 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
 {
     public class TechnicalIndicatorCalculatorFactory
     {
-        public static ITechnicalIndicatorCalculator GetTechnicalCalculator(TechnicalIndicatorRequest technicalIndicator)
+        public static ITechnicalIndicatorCalculator GetTechnicalIndicatorCalculator(StockChartSeriesRequest technicalIndicator)
         {
             switch (technicalIndicator.Type)
             {
-                case TechnicalIndicatorType.BOLLINGER_BANDS:
+                case StockChartSeriesType.BOLLINGER_BANDS:
                     // TODO:  this assumes the parameters passed in are valid.
                     var paramsArrayString = technicalIndicator.Params.Split(',');
                     var paramsArrayInt = new int[2] { int.Parse(paramsArrayString[0]), int.Parse(paramsArrayString[1]) };
                     return new BollingerBandsCalculator(paramsArrayInt[0], paramsArrayInt[1]);
-                case TechnicalIndicatorType.SMA:
+                case StockChartSeriesType.SMA:
                     return new SimpleMovingAverageCalculator(int.Parse(technicalIndicator.Params));
                 default:
                     return null;
