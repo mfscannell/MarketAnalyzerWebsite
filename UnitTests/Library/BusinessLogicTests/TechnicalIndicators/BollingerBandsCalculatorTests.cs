@@ -9,6 +9,22 @@ namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicator
     public class BollingerBandsCalculatorTests
     {
         [TestMethod]
+        public void TestParseNumDays()
+        {
+            var result = BollingerBandsCalculator.ParseNumDays("20,3");
+
+            Assert.AreEqual(20, result);
+        }
+
+        [TestMethod]
+        public void TestParseNumStandardDeviations()
+        {
+            var result = BollingerBandsCalculator.ParseNumStandardDeviations("20,3");
+
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
         public void GetTechnicalIndicatorValue20_2()
         {
             var calculator = new BollingerBandsCalculator(20, 2);
@@ -126,9 +142,6 @@ namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicator
             Assert.AreEqual(0, result.UpperBandValue, 0.05);
             Assert.AreEqual(0, result.MovingAverageValue, 0.05);
             Assert.AreEqual(0, result.LowerBandValue, 0.05);
-
-
-
 
             result = calculator.CalculateBollingerBands(15.5);
 

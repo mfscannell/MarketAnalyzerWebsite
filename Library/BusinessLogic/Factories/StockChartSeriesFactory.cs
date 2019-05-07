@@ -43,10 +43,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     var upperBandChartSeries = new UpperBollingerBandChartSeries();
                     var middleBandChartSeries = new MiddleBollingerBandChartSeries();
                     var lowerBandChartSeries = new LowerBollingerBandChartSeries();
-                    var bollingerBandsParams = stockChartSeriesRequest.Params.Split(',').Select(int.Parse).ToArray();
                     var bollingerBandsCalculator = new BollingerBandsCalculator(
-                        bollingerBandsParams[0], 
-                        bollingerBandsParams[1]);
+                        BollingerBandsCalculator.ParseNumDays(stockChartSeriesRequest.Params),
+                        BollingerBandsCalculator.ParseNumStandardDeviations(stockChartSeriesRequest.Params));
 
                     foreach (var tradingDay in stockHistoryData)
                     {

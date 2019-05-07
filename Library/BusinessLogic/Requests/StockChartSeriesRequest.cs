@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
+using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 
 namespace FinanceWebsite.Library.BusinessLogic.Requests
 {
@@ -25,6 +26,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
             // TODO need to move this out of this class
             switch (this.Type)
             {
+                case StockChartSeriesType.BOLLINGER_BANDS:
+                    return BollingerBandsCalculator.ParseNumDays(this.Params) * -2;
                 case StockChartSeriesType.EMA:
                     return int.Parse(this.Params) * -2;
                 case StockChartSeriesType.PRICE:

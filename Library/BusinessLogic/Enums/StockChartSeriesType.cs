@@ -14,6 +14,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string EMA = "EMA";
 
+        public const string MACD = "MACD";
+
         public const string PRICE = "Price";
 
         public const string SMA = "SMA";

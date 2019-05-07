@@ -69,12 +69,6 @@
                        Text = item,
                        Value = item
                    }), new { @class = "form-control"})
-            <!--
-                <select class="form-control" id="upperIndicatorTypeSelect">
-                    <option>SMA</option>
-                    <option>EMA</option>
-                </select>
-             -->
         </div>
         <div class="col-md-2">
             <input class="form-control" id="upperIndicatorParametersInput" />
@@ -103,11 +97,13 @@
                     Selected Upper Indicators
                 </button>
                 <div class="dropdown-menu" id="selectedUpperIndicators" aria-labelledby="dropDownUpperIndicators">
-                    <div class="row upperIndicator">
-                        <div class="col-md-2 indicatorType">SMA</div>
-                        <div class="col-md-1 indicatorParameters">10</div>
-                        <div class="col-md-1">
-                            <button type="submit" class="removeUpperIndicator btn btn-danger">-</button>
+                    <div class="container">
+                        <div class="row upperIndicator">
+                            <div class="col-md-7 indicatorType">SMA</div>
+                            <div class="col-md-2 indicatorParameters">10</div>
+                            <div class="col-md-1">
+                                <button type="submit" class="removeUpperIndicator btn btn-danger">-</button>
+                            </div>
                         </div>
                     </div>
                 </div>

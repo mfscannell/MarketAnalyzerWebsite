@@ -1,11 +1,11 @@
 ﻿function getStockHistory() {
     var tickerSymbol = $('#h2TickerSymbol').text();
-    var beginDate = $('#edtChartBeginDate').val();
-    var endDate = $('#edtChartEndDate').val();
+    var chartBeginDate = $('#edtChartBeginDate').val();
+    var chartEndDate = $('#edtChartEndDate').val();
     var url = 'http://localhost:63993/dataApi/stocks/history'
     url += '?tickerSymbol=' + tickerSymbol;
-    url += '&beginDate=' + beginDate;
-    url += '&endDate=' + endDate;
+    url += '&beginDate=' + chartBeginDate;
+    url += '&endDate=' + chartEndDate;
 
     var uppers = '';
 
@@ -33,7 +33,6 @@
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (result) {
-            var something6 = 5;
             var groupingUnits = [[
                 'day',
                 [1]
@@ -64,9 +63,6 @@
                 series.push(chartSeries);
             }
 
-            // NOTE:  x-axis and y-axis need to change for multiple lower indicators
-            
-
             Highcharts.stockChart('stockContainer', {
                 navigator: {
                     enabled: false
@@ -87,8 +83,8 @@
                     text: tickerSymbol
                 },
                 xAxis: [{
-                    min: new Date(beginDate).getTime(),
-                    max: new Date(endDate).getTime()
+                    min: new Date(chartBeginDate).getTime(),
+                    max: new Date(chartEndDate).getTime()
                 }],
                 yAxis: [{
                     labels: {
@@ -135,11 +131,13 @@ $(document).ready(function () {
         var indicatorType = $("#upperIndicatorTypeSelect option:selected").text();
         var indicatorParameters = $("#upperIndicatorParametersInput").val();
         var newListItem = '';
+        newListItem += '<div class="container">';
         newListItem += '<div class="row upperIndicator">';
-        newListItem += '<div class="col-md-2 indicatorType">' + indicatorType + '</div>';
-        newListItem += '<div class="col-md-1 indicatorParameters">' + indicatorParameters + '</div>';
+        newListItem += '<div class="col-md-7 indicatorType">' + indicatorType + '</div>';
+        newListItem += '<div class="col-md-2 indicatorParameters">' + indicatorParameters + '</div>';
         newListItem += '<div class="col-md-1">';
         newListItem += '<button type="submit" class="removeUpperIndicator btn btn-danger">-</button>';
+        newListItem += '</div>';
         newListItem += '</div>';
         newListItem += '</div>';
         $("#selectedUpperIndicators").append(newListItem);

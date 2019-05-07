@@ -12,6 +12,10 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
     {
         #region Private Fields
 
+        private const int INDEX_OF_NUM_DAYS = 0;
+
+        private const int INDEX_OF_NUM_STANDARD_DEVIATIONS = 1;
+
         private SimpleMovingAverageCalculator smaCalculator;
 
         private int numStandardDeviations;
@@ -24,6 +28,20 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         {
             this.smaCalculator = new SimpleMovingAverageCalculator(days);
             this.numStandardDeviations = numStandardDeviations;
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        public static int ParseNumDays(string parameters)
+        {
+            return parameters.Split(',').Select(int.Parse).ToArray()[INDEX_OF_NUM_DAYS];
+        }
+
+        public static int ParseNumStandardDeviations(string parameters)
+        {
+            return parameters.Split(',').Select(int.Parse).ToArray()[INDEX_OF_NUM_STANDARD_DEVIATIONS];
         }
 
         #endregion
