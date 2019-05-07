@@ -1,4 +1,6 @@
-﻿@model FinanceWebsite.MVC.Models.StockQuote
+﻿@using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
+
+@model FinanceWebsite.MVC.Models.StockQuote
 @{
     /**/
 
@@ -59,10 +61,20 @@
     </div>
     <div class="row form-group">
         <div class="col-md-3">
-            <select class="form-control" id="upperIndicatorTypeSelect">
-                <option>SMA</option>
-                <option>EMA</option>
-            </select>
+            @Html.DropDownList(
+               "upperIndicatorTypeSelect",
+               StockManager.AvailableUpperTechnicalIndicators.Select(
+                   item => new SelectListItem
+                   {
+                       Text = item,
+                       Value = item
+                   }), new { @class = "form-control"})
+            <!--
+                <select class="form-control" id="upperIndicatorTypeSelect">
+                    <option>SMA</option>
+                    <option>EMA</option>
+                </select>
+             -->
         </div>
         <div class="col-md-2">
             <input class="form-control" id="upperIndicatorParametersInput" />

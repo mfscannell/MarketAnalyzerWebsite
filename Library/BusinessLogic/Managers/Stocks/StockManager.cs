@@ -25,13 +25,28 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 
         #region Public Static Methods
 
-        public static List<string> GetAvailableUpperTechnicalIndicators()
+        //public static IDictionary<int, string> AvailableUpperTechnicalIndicators
+        //{
+        //    get
+        //    {
+        //        return new Dictionary<int, string>()
+        //        {
+        //            { 1, "Bollinger Bands"},
+        //            {2, "Simple Moving Average" }
+        //        };
+        //    }
+        //}
+
+        public static IEnumerable<string> AvailableUpperTechnicalIndicators
         {
-            return new List<string>
+            get
             {
-                StockChartSeriesType.BOLLINGER_BANDS,
-                StockChartSeriesType.SMA
-            };
+                return new List<string>
+                {
+                    StockChartSeriesType.BOLLINGER_BANDS,
+                    StockChartSeriesType.SMA
+                };
+            }
         }
 
         #endregion
