@@ -12,10 +12,11 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public LowerBollingerBandChartSeries() : base()
+        public LowerBollingerBandChartSeries(string color) : base()
         {
             this.Name = "Lower Bollinger Band";
             this.Type = ChartType.CHART_TYPE_LINE;
+            this.Color = color;
         }
 
         #endregion

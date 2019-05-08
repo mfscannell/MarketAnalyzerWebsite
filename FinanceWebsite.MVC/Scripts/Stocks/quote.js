@@ -39,22 +39,33 @@
             ]];
 
             var series = [];
-            var yAxis = [];
 
             for (var i = 0; i < result.length; i++) {
                 for (var j = 0; j < result[i].Data.length; j++) {
-                    result[i].Data[j][0] = Date.parse(result[i].Data[j][0]);
+                    result[i].Data[j]['X'] = Date.parse(result[i].Data[j]['X']);
                 }
 
                 var chartSeries = {
+                    color: result[i].Color,
                     type: result[i].Type,
                     name: result[i].Name,
-                    data: result[i].Data,
+                    dashStyle: result[i].DashStyle,
+                    data: [],
                     dataGrouping: {
                         units: groupingUnits
                     },
                     yAxis: result[i].YAxis
                 };
+
+                for (var j = 0; j < result[i].Data.length; j++) {
+                    var newDatum = {};
+
+                    Object.keys(result[i].Data[j]).forEach(function (key) {
+                        newDatum[key.toLowerCase()] = result[i].Data[j][key];
+                    });
+
+                    chartSeries.data.push(newDatum);
+                }
 
                 if (chartSeries.type == 'line') {
                     chartSeries.lineWidth = 1;
@@ -70,12 +81,6 @@
                 rangeSelector: {
                     enabled: false
                 },
-                plotOptions: {
-                    candlestick: {
-                        color: 'red',
-                        upColor: 'green'
-                    }
-                },
                 scrollBar: {
                     enabled: false
                 },
@@ -83,8 +88,7 @@
                     text: tickerSymbol
                 },
                 xAxis: [{
-                    min: new Date(chartBeginDate).getTime(),
-                    max: new Date(chartEndDate).getTime()
+                    min: new Date(chartBeginDate).getTime()
                 }],
                 yAxis: [{
                     labels: {

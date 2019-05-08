@@ -12,10 +12,11 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public SimpleMovingAverageChartSeries(string name) : base()
+        public SimpleMovingAverageChartSeries(string name, string color) : base()
         {
             this.Name = name;
-            Type = ChartType.CHART_TYPE_LINE;
+            this.Type = ChartType.CHART_TYPE_LINE;
+            this.Color = color;
         }
 
         #endregion

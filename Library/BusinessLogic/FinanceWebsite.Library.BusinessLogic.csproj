@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Enums\ChartType.cs" />
     <Compile Include="Enums\DashStyle.cs" />
+    <Compile Include="Enums\StockChartSeriesColor.cs" />
     <Compile Include="Enums\StockChartSeriesType.cs" />
     <Compile Include="Factories\StockChartSeriesFactory.cs" />
     <Compile Include="Interfaces\IFinanceClient.cs" />
@@ -56,6 +57,10 @@
     <Compile Include="Requests\StockHistoryDataRequest.cs" />
     <Compile Include="Responses\ChartSeries\ChartSeries.cs" />
     <Compile Include="Managers\Stocks\StockManager.cs" />
+    <Compile Include="Responses\ChartSeries\DataPoints\ColumnSeriesDataPoint.cs" />
+    <Compile Include="Responses\ChartSeries\DataPoints\LineSeriesDataPoint.cs" />
+    <Compile Include="Responses\ChartSeries\DataPoints\PriceSeriesDataPoint.cs" />
+    <Compile Include="Responses\ChartSeries\DataPoints\SeriesDataPoint.cs" />
     <Compile Include="Responses\ChartSeries\LowerBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\MiddleBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\PriceChartSeries.cs" />

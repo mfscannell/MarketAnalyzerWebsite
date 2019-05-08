@@ -12,10 +12,11 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public UpperBollingerBandChartSeries() : base()
+        public UpperBollingerBandChartSeries(string color) : base()
         {
             this.Name = "Upper Bollinger Band";
             this.Type = ChartType.CHART_TYPE_LINE;
+            this.Color = color;
         }
 
         #endregion

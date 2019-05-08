@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
 
 namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 {
@@ -17,7 +18,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
             DashStyle = Enums.DashStyle.SOLID;
             Type = string.Empty;
             Name = string.Empty;
-            Data = new List<List<object>>();
+            Data = new List<SeriesDataPoint>();
             YAxis = 0;
         }
 
@@ -25,13 +26,15 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 
         #region Public Properties
 
+        public string Color { get; set; }
+
         public string DashStyle { get; set; }
 
         public string Type { get; set; }
 
         public string Name { get; set; }
 
-        public List<List<Object>> Data { get; set; }
+        public List<SeriesDataPoint> Data { get; set; }
 
         public int YAxis { get; set; }
 

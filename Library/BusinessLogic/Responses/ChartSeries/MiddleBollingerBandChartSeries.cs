@@ -12,11 +12,12 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public MiddleBollingerBandChartSeries() : base()
+        public MiddleBollingerBandChartSeries(string color) : base()
         {
             this.Name = "Middle Bollinger Band";
             this.Type = ChartType.CHART_TYPE_LINE;
             this.DashStyle = Enums.DashStyle.DOT;
+            this.Color = color;
         }
 
         #endregion
