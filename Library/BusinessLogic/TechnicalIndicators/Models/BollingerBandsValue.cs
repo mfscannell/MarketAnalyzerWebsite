@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models
 {
-    public class BollingerBands
+    public class BollingerBandsValue
     {
         #region Public Properties
 

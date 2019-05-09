@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using FinanceWebsite.Library.BusinessLogic.Requests;
-using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
+using FinanceWebsite.Library.BusinessLogic.Managers;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
@@ -21,9 +21,10 @@ namespace FinanceWebsite.DataService.Controllers
         [EnableCors(origins: "http://localhost:58607", headers: "*", methods: "*")]
         [HttpGet]
         [Route("DataApi/stocks/history")]
-        public async Task<List<ChartSeries>> GetStockHistory(string tickerSymbol, DateTime beginDate, DateTime endDate, string uppers)
+        public async Task<IEnumerable<ChartSeries>> GetStockHistory(string tickerSymbol, DateTime beginDate, DateTime endDate, string uppers, string lowers)
         {
             var parsedUppers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(uppers);
+            var parsedLowers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(lowers);
 
             var technicalAnalysisBeginDateDifference = 0;
 

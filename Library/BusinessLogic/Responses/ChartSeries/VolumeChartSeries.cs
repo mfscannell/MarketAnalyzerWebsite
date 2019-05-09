@@ -16,9 +16,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 
         public VolumeChartSeries(int yAxis, IEnumerable<ColumnSeriesDataPoint> dataPoints) : base()
         {
-            Name = "Volume";
-            Type = ChartType.COLUMN;
-            YAxis = yAxis;
+            this.Name = "Volume";
+            this.Type = ChartType.COLUMN;
+            this.YAxis = yAxis;
             this.Data = dataPoints;
         }
 

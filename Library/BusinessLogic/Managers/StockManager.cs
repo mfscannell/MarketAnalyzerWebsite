@@ -10,7 +10,7 @@ using FinanceWebsite.FinanceClient.YahooClient;
 using FinanceWebsite.Library.BusinessLogic.Factories;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
-namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
+namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
     public class StockManager
     {
@@ -25,18 +25,6 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
 
         #region Public Static Methods
 
-        //public static IDictionary<int, string> AvailableUpperTechnicalIndicators
-        //{
-        //    get
-        //    {
-        //        return new Dictionary<int, string>()
-        //        {
-        //            { 1, "Bollinger Bands"},
-        //            {2, "Simple Moving Average" }
-        //        };
-        //    }
-        //}
-
         public static IEnumerable<string> AvailableUpperTechnicalIndicators
         {
             get
@@ -49,25 +37,33 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers.Stocks
             }
         }
 
+        public static IEnumerable<string> AvailableLowerTechnicalIndicators
+        {
+            get
+            {
+                return new List<string>
+                {
+                    StockChartSeriesName.RSI
+                };
+            }
+        }
+
         #endregion
 
         #region Public Methods
 
-        public async Task<List<ChartSeries>> GetStockChartSeries(StockChartRequest request)
+        public async Task<IEnumerable<ChartSeries>> GetStockChartSeries(StockChartRequest request)
         {
             var yahooHistory = await Historical.GetPriceAsync(
                 request.StockHistoryDataRequest.TickerSymbol, 
                 request.StockHistoryDataRequest.TechnicalAnalysisBeginDate, 
                 request.StockHistoryDataRequest.TechnicalAnalysisEndDate);
-            var stockChartSeries = new List<ChartSeries>();
+            
             var chartSeriesFactory = new StockChartSeriesFactory();
 
-            foreach (var chartSeriesRequest in request.StockChartSeriesRequest)
-            {
-                stockChartSeries.AddRange(
-                    chartSeriesFactory.GenerateChartSeries(
+            var stockChartSeries = request.StockChartSeriesRequest.SelectMany(
+                chartSeriesRequest => chartSeriesFactory.GenerateChartSeries(
                         chartSeriesRequest, yahooHistory));
-            }
 
             return stockChartSeries;
         }

@@ -1,4 +1,4 @@
-﻿@using FinanceWebsite.Library.BusinessLogic.Managers.Stocks;
+﻿@using FinanceWebsite.Library.BusinessLogic.Managers;
 
 @model FinanceWebsite.MVC.Models.StockQuote
 @{
@@ -77,21 +77,24 @@
             <button id="btnAddUpperIndicator" type="submit" class="btn btn-primary">+</button>
         </div>
         <div class="col-md-3">
-            <select class="form-control" id="lowerIndicatorSelect">
-                <option>MACD</option>
-                <option>Slow Stochastic</option>
-            </select>
+            @Html.DropDownList(
+               "lowerIndicatorTypeSelect",
+               StockManager.AvailableLowerTechnicalIndicators.Select(
+                   item => new SelectListItem
+                   {
+                       Text = item,
+                       Value = item
+                   }), new { @class = "form-control" })
         </div>
         <div class="col-md-2">
-            <input class="form-control" id="lowerIndicatorInput" />
+            <input class="form-control" id="lowerIndicatorParametersInput" />
         </div>
         <div class="col-md-1">
             <button id="btnAddLowerIndicator" type="submit" class="btn btn-primary">+</button>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-
+        <div class="col-md-6">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownUpperIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Selected Upper Indicators
@@ -103,6 +106,25 @@
                             <div class="col-md-2 indicatorParameters">10</div>
                             <div class="col-md-1">
                                 <button type="submit" class="removeUpperIndicator btn btn-danger">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownLowerIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Selected Lower Indicators
+                </button>
+                <div class="dropdown-menu" id="selectedLowerIndicators" aria-labelledby="dropDownLowerIndicators">
+                    <div class="container">
+                        <div class="row lowerIndicator">
+                            <div class="col-md-7 indicatorType">RSI</div>
+                            <div class="col-md-2 indicatorParameters">14</div>
+                            <div class="col-md-1">
+                                <button type="submit" class="removeLowerIndicator btn btn-danger">-</button>
                             </div>
                         </div>
                     </div>

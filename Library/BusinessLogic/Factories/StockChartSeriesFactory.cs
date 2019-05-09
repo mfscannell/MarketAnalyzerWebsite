@@ -20,7 +20,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
     {
         #region Private Fields
 
-        private int numChartsCreated;
+        private int numberOfChartsCreated;
 
         private int numberOfUpperSeriesCreated;
 
@@ -30,7 +30,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
 
         public StockChartSeriesFactory()
         {
-            this.numChartsCreated = 0;
+            this.numberOfChartsCreated = 0;
+            this.numberOfUpperSeriesCreated = 0;
         }
 
         #endregion
@@ -51,29 +52,29 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     var bollingerBandValues = stockHistoryData.Select(
                         tradingDay => bollingerBandsCalculator.CalculateBollingerBands(tradingDay));
 
-                    return new ChartSeries[3] 
+                    return new ChartSeries[3]
                     {
                         new UpperBollingerBandChartSeries(
-                        StockChartSeriesColor.BOLLINGER_BANDS,
-                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
-                            {
-                                X = tradingDay.Date,
-                                Y = tradingDay.UpperBandValue
-                            })),
+                            StockChartSeriesColor.BOLLINGER_BANDS,
+                            bollingerBandValues.Select(bbValue => new LineSeriesDataPoint
+                                {
+                                    X = bbValue.Date,
+                                    Y = bbValue.UpperBandValue
+                                })),
                         new MiddleBollingerBandChartSeries(
-                        StockChartSeriesColor.BOLLINGER_BANDS,
-                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
-                            {
-                                X = tradingDay.Date,
-                                Y = tradingDay.MovingAverageValue
-                            })),
+                            StockChartSeriesColor.BOLLINGER_BANDS,
+                            bollingerBandValues.Select(bbValue => new LineSeriesDataPoint
+                                {
+                                    X = bbValue.Date,
+                                    Y = bbValue.MovingAverageValue
+                                })),
                         new LowerBollingerBandChartSeries(
-                        StockChartSeriesColor.BOLLINGER_BANDS,
-                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
-                            {
-                                X = tradingDay.Date,
-                                Y = tradingDay.LowerBandValue
-                            }))
+                            StockChartSeriesColor.BOLLINGER_BANDS,
+                            bollingerBandValues.Select(bbValue => new LineSeriesDataPoint
+                                {
+                                    X = bbValue.Date,
+                                    Y = bbValue.LowerBandValue
+                                }))
                     };
                 case StockChartSeriesName.PRICE:
                     var priceData = new List<PriceSeriesDataPoint>();
@@ -81,19 +82,24 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     for (var i = 0; i < stockHistoryData.Count; i++)
                     {
                         priceData.Add(new PriceSeriesDataPoint
-                            {
-                                X = stockHistoryData[i].Date,
-                                Open = stockHistoryData[i].Open,
-                                High = stockHistoryData[i].High,
-                                Low = stockHistoryData[i].Low,
-                                Close = stockHistoryData[i].AdjClose,
-                                Color = i > 0 && stockHistoryData[i].AdjClose < stockHistoryData[i - 1].AdjClose 
-                                    ? StockChartSeriesColor.DOWN_PRICE 
+                        {
+                            X = stockHistoryData[i].Date,
+                            Open = stockHistoryData[i].Open,
+                            High = stockHistoryData[i].High,
+                            Low = stockHistoryData[i].Low,
+                            Close = stockHistoryData[i].AdjClose,
+                            Color = stockHistoryData[i].Close > stockHistoryData[i].Open
+                                    ? StockChartSeriesColor.WHITE
+                                    : i > 0 && stockHistoryData[i].AdjClose < stockHistoryData[i - 1].AdjClose
+                                    ? StockChartSeriesColor.DOWN_PRICE
+                                    : StockChartSeriesColor.UP_PRICE,
+                            LineColor = i > 0 && stockHistoryData[i].AdjClose < stockHistoryData[i - 1].AdjClose
+                                    ? StockChartSeriesColor.DOWN_PRICE
                                     : StockChartSeriesColor.UP_PRICE
-                            });
+                        });
                     }
 
-                    return new PriceChartSeries[1] 
+                    return new PriceChartSeries[1]
                     {
                         new PriceChartSeries(priceData)
                     };
@@ -115,7 +121,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                 }))
                     };
                 case StockChartSeriesName.VOLUME:
-                    this.numChartsCreated++;
+                    this.numberOfChartsCreated++;
                     var volumeData = new List<ColumnSeriesDataPoint>();
 
                     for (var i = 0; i < stockHistoryData.Count; i++)
@@ -131,9 +137,10 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                             });
                     }
 
-                    var volumeChartSeries = new VolumeChartSeries(this.numChartsCreated, volumeData);
-
-                    return new VolumeChartSeries[1] { volumeChartSeries };
+                    return new VolumeChartSeries[1] 
+                    {
+                        new VolumeChartSeries(this.numberOfChartsCreated, volumeData)
+                    };
                 default:
                     return null;
             }

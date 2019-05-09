@@ -19,5 +19,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints
         public double Close { get; set; }
 
         public string Color { get; set; }
+
+        public string LineColor { get; set; }
     }
 }

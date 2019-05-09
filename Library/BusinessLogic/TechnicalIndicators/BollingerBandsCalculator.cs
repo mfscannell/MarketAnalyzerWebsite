@@ -49,12 +49,12 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
         #region Public Methods
 
-        public BollingerBands CalculateBollingerBands(HistoryPrice tradingDay)
+        public BollingerBandsValue CalculateBollingerBands(HistoryPrice tradingDay)
         {
             var avg = this.smaCalculator.CalculateMovingAverage(tradingDay.AdjClose);
             var stdDev = this.smaCalculator.GetStandardDeviation();
 
-            return new BollingerBands
+            return new BollingerBandsValue
             {
                 Date = tradingDay.Date,
                 MovingAverageValue = avg,

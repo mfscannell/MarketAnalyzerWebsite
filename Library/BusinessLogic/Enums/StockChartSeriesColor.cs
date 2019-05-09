@@ -34,6 +34,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string YELLOW = "yellow";
 
-        public static readonly string[] UPPERS = new string[4] { RED, NAVY, CYAN , MAGENTA};
+        public const string WHITE = "white";
+
+        public static readonly string[] UPPERS = new string[5] { RED, NAVY, CYAN , MAGENTA, MAGENTA};
     }
 }

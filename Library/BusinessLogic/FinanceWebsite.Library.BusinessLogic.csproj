@@ -56,7 +56,7 @@
     <Compile Include="Requests\StockChartSeriesRequest.cs" />
     <Compile Include="Requests\StockHistoryDataRequest.cs" />
     <Compile Include="Responses\ChartSeries\ChartSeries.cs" />
-    <Compile Include="Managers\Stocks\StockManager.cs" />
+    <Compile Include="Managers\StockManager.cs" />
     <Compile Include="Responses\ChartSeries\DataPoints\ColumnSeriesDataPoint.cs" />
     <Compile Include="Responses\ChartSeries\DataPoints\LineSeriesDataPoint.cs" />
     <Compile Include="Responses\ChartSeries\DataPoints\PriceSeriesDataPoint.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Responses\ChartSeries\UpperBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
     <Compile Include="TechnicalIndicators\BollingerBandsCalculator.cs" />
-    <Compile Include="TechnicalIndicators\Models\BollingerBands.cs" />
+    <Compile Include="TechnicalIndicators\Models\BollingerBandsValue.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
   </ItemGroup>
   <ItemGroup />

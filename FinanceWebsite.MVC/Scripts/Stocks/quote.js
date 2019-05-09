@@ -27,6 +27,26 @@
 
     url += '&uppers=[' + uppers + ']';
 
+    var lowers = '';
+
+    $('.lowerIndicator').each(function (index) {
+        if (index > 0) {
+            lowers += ','
+        }
+
+        lowers += '{';
+
+        var indicatorType = $(this).find('.indicatorType').text();
+        var indicatorParameters = $(this).find('.indicatorParameters').text();
+
+        lowers += '%22Type%22:%22' + indicatorType;
+        lowers += '%22,%22Params%22:%22' + indicatorParameters;
+
+        lowers += '%22}'
+    });
+
+    url += '&lowers=[' + lowers + ']';
+
     $.ajax({
         type: 'GET',
         url: url,
@@ -61,7 +81,7 @@
                     var newDatum = {};
 
                     Object.keys(result[i].Data[j]).forEach(function (key) {
-                        newDatum[key.toLowerCase()] = result[i].Data[j][key];
+                        newDatum[key.charAt(0).toLowerCase() + key.slice(1)] = result[i].Data[j][key];
                     });
 
                     chartSeries.data.push(newDatum);
@@ -147,7 +167,27 @@ $(document).ready(function () {
         $("#selectedUpperIndicators").append(newListItem);
     });
 
+    $("#btnAddLowerIndicator").click(function () {
+        var indicatorType = $("#lowerIndicatorTypeSelect option:selected").text();
+        var indicatorParameters = $("#lowerIndicatorParametersInput").val();
+        var newListItem = '';
+        newListItem += '<div class="container">';
+        newListItem += '<div class="row lowerIndicator">';
+        newListItem += '<div class="col-md-7 indicatorType">' + indicatorType + '</div>';
+        newListItem += '<div class="col-md-2 indicatorParameters">' + indicatorParameters + '</div>';
+        newListItem += '<div class="col-md-1">';
+        newListItem += '<button type="submit" class="removeLowerIndicator btn btn-danger">-</button>';
+        newListItem += '</div>';
+        newListItem += '</div>';
+        newListItem += '</div>';
+        $("#selectedLowerIndicators").append(newListItem);
+    });
+
     $('#selectedUpperIndicators').on('click', '.removeUpperIndicator', function () {
         $(this).closest(".upperIndicator").remove();
+    });
+
+    $('#selectedLowerIndicators').on('click', '.removeLowerIndicator', function () {
+        $(this).closest(".lowerIndicator").remove();
     });
 });

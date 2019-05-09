@@ -18,6 +18,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string PRICE = "Price";
 
+        public const string RSI = "RSI";
+
         public const string SMA = "SMA";
 
         public const string VOLUME = "Volume";
