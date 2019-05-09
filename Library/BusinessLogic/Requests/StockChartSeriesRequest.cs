@@ -26,15 +26,15 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
             // TODO need to move this out of this class
             switch (this.Type)
             {
-                case StockChartSeriesType.BOLLINGER_BANDS:
+                case StockChartSeriesName.BOLLINGER_BANDS:
                     return BollingerBandsCalculator.ParseNumDays(this.Params) * -2;
-                case StockChartSeriesType.EMA:
+                case StockChartSeriesName.EMA:
                     return int.Parse(this.Params) * -2;
-                case StockChartSeriesType.PRICE:
+                case StockChartSeriesName.PRICE:
                     return 0;
-                case StockChartSeriesType.SMA:
+                case StockChartSeriesName.SMA:
                     return int.Parse(this.Params) * -2;
-                case StockChartSeriesType.VOLUME:
+                case StockChartSeriesName.VOLUME:
                     return 0;
                 default:
                     return 0;

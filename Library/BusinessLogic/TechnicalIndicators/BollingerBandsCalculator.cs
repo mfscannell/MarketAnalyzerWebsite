@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models;
+using FinanceWebsite.FinanceClient.YahooClient.Models;
 
 namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 {
@@ -48,13 +49,14 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
         #region Public Methods
 
-        public BollingerBands CalculateBollingerBands(double latestValue)
+        public BollingerBands CalculateBollingerBands(HistoryPrice tradingDay)
         {
-            var avg = this.smaCalculator.CalculateMovingAverage(latestValue);
+            var avg = this.smaCalculator.CalculateMovingAverage(tradingDay.AdjClose);
             var stdDev = this.smaCalculator.GetStandardDeviation();
 
             return new BollingerBands
             {
+                Date = tradingDay.Date,
                 MovingAverageValue = avg,
                 UpperBandValue = avg + this.numStandardDeviations * stdDev,
                 LowerBandValue = avg - this.numStandardDeviations * stdDev

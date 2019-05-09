@@ -10,6 +10,8 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models
     {
         #region Public Properties
 
+        public DateTime Date { get; set; }
+
         public double UpperBandValue { get; set; }
 
         public double LowerBandValue { get; set; }

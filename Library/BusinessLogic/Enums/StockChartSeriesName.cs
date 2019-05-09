@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceWebsite.Library.BusinessLogic.Enums
 {
-    public class StockChartSeriesType
+    public class StockChartSeriesName
     {
         #region Public Constants
 

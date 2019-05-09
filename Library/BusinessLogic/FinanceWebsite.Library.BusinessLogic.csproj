@@ -48,7 +48,7 @@
     <Compile Include="Enums\ChartType.cs" />
     <Compile Include="Enums\DashStyle.cs" />
     <Compile Include="Enums\StockChartSeriesColor.cs" />
-    <Compile Include="Enums\StockChartSeriesType.cs" />
+    <Compile Include="Enums\StockChartSeriesName.cs" />
     <Compile Include="Factories\StockChartSeriesFactory.cs" />
     <Compile Include="Interfaces\IFinanceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

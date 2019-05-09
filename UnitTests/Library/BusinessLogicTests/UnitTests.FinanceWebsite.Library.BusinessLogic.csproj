@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FinanceWebsite.FinanceClient.YahooClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\FinanceWebsite.FinanceClient.YahooClient.dll</HintPath>
+    </Reference>
     <Reference Include="FinanceWebsite.Library.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Build\FinanceWebsite.Library.BusinessLogic.dll</HintPath>

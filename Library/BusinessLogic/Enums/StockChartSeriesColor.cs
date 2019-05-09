@@ -8,6 +8,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 {
     public class StockChartSeriesColor
     {
+        public const string BOLLINGER_BANDS = "navy";
+
         public const string BLUE = "blue";
 
         public const string CYAN = "cyan";

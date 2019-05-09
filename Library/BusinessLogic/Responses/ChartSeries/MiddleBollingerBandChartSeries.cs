@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
 
 namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 {
@@ -12,12 +13,13 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public MiddleBollingerBandChartSeries(string color) : base()
+        public MiddleBollingerBandChartSeries(string color, IEnumerable<SeriesDataPoint> dataPoints) : base()
         {
             this.Name = "Middle Bollinger Band";
-            this.Type = ChartType.CHART_TYPE_LINE;
+            this.Type = ChartType.LINE;
             this.DashStyle = Enums.DashStyle.DOT;
             this.Color = color;
+            this.Data = dataPoints;
         }
 
         #endregion

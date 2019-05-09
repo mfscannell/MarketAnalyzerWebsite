@@ -34,7 +34,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 
         public string Name { get; set; }
 
-        public List<SeriesDataPoint> Data { get; set; }
+        public IEnumerable<SeriesDataPoint> Data { get; set; }
 
         public int YAxis { get; set; }
 

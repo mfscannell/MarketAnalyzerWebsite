@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
+
 namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 {
     public class SimpleMovingAverageChartSeries : ChartSeries
     {
         #region Constructors
 
-        public SimpleMovingAverageChartSeries(string name, string color) : base()
+        public SimpleMovingAverageChartSeries(string name, string color, IEnumerable<LineSeriesDataPoint> data) : base()
         {
             this.Name = name;
-            this.Type = ChartType.CHART_TYPE_LINE;
+            this.Type = ChartType.LINE;
             this.Color = color;
+            this.Data = data;
         }
 
         #endregion

@@ -22,7 +22,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
 
         private int numChartsCreated;
 
-        private int numUpperCharts;
+        private int numberOfUpperSeriesCreated;
 
         #endregion
 
@@ -43,53 +43,44 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
         {
             switch (stockChartSeriesRequest.Type)
             {
-                case StockChartSeriesType.BOLLINGER_BANDS:
-                    var upperBandChartSeries = new UpperBollingerBandChartSeries(
-                        StockChartSeriesColor.UPPERS[this.numUpperCharts]);
-                    var middleBandChartSeries = new MiddleBollingerBandChartSeries(
-                        StockChartSeriesColor.UPPERS[this.numUpperCharts]);
-                    var lowerBandChartSeries = new LowerBollingerBandChartSeries(
-                        StockChartSeriesColor.UPPERS[this.numUpperCharts]);
+                case StockChartSeriesName.BOLLINGER_BANDS:
+                    this.numberOfUpperSeriesCreated += 3;
                     var bollingerBandsCalculator = new BollingerBandsCalculator(
                         BollingerBandsCalculator.ParseNumDays(stockChartSeriesRequest.Params),
                         BollingerBandsCalculator.ParseNumStandardDeviations(stockChartSeriesRequest.Params));
-
-                    foreach (var tradingDay in stockHistoryData)
-                    {
-                        var bollingerBandValue = bollingerBandsCalculator.CalculateBollingerBands(tradingDay.AdjClose);
-
-                        upperBandChartSeries.Data.Add(new LineSeriesDataPoint
-                        {
-                            X = tradingDay.Date,
-                            Y = bollingerBandValue.UpperBandValue
-                        });
-                        middleBandChartSeries.Data.Add(new LineSeriesDataPoint
-                        {
-                            X = tradingDay.Date,
-                            Y = bollingerBandValue.MovingAverageValue
-                        });
-                        lowerBandChartSeries.Data.Add(new LineSeriesDataPoint
-                        {
-                            X = tradingDay.Date,
-                            Y = bollingerBandValue.LowerBandValue
-                        });
-                    }
-
-                    this.numUpperCharts++;
+                    var bollingerBandValues = stockHistoryData.Select(
+                        tradingDay => bollingerBandsCalculator.CalculateBollingerBands(tradingDay));
 
                     return new ChartSeries[3] 
                     {
-                        upperBandChartSeries,
-                        middleBandChartSeries,
-                        lowerBandChartSeries
+                        new UpperBollingerBandChartSeries(
+                        StockChartSeriesColor.BOLLINGER_BANDS,
+                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
+                            {
+                                X = tradingDay.Date,
+                                Y = tradingDay.UpperBandValue
+                            })),
+                        new MiddleBollingerBandChartSeries(
+                        StockChartSeriesColor.BOLLINGER_BANDS,
+                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
+                            {
+                                X = tradingDay.Date,
+                                Y = tradingDay.MovingAverageValue
+                            })),
+                        new LowerBollingerBandChartSeries(
+                        StockChartSeriesColor.BOLLINGER_BANDS,
+                        bollingerBandValues.Select(tradingDay => new LineSeriesDataPoint
+                            {
+                                X = tradingDay.Date,
+                                Y = tradingDay.LowerBandValue
+                            }))
                     };
-                case StockChartSeriesType.PRICE:
-                    var priceChartSeries = new PriceChartSeries();
+                case StockChartSeriesName.PRICE:
+                    var priceData = new List<PriceSeriesDataPoint>();
 
                     for (var i = 0; i < stockHistoryData.Count; i++)
                     {
-                        priceChartSeries.Data.Add(
-                            new PriceSeriesDataPoint
+                        priceData.Add(new PriceSeriesDataPoint
                             {
                                 X = stockHistoryData[i].Date,
                                 Open = stockHistoryData[i].Open,
@@ -104,38 +95,32 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
 
                     return new PriceChartSeries[1] 
                     {
-                        priceChartSeries
+                        new PriceChartSeries(priceData)
                     };
-                case StockChartSeriesType.SMA:
-                    var smaChartSeries = new SimpleMovingAverageChartSeries(
-                        $"{stockChartSeriesRequest.Params}-Day SMA",
-                        StockChartSeriesColor.UPPERS[this.numUpperCharts]);
+                case StockChartSeriesName.SMA:
+                    this.numberOfUpperSeriesCreated++;
                     var smaCalculator = new SimpleMovingAverageCalculator(int.Parse(stockChartSeriesRequest.Params));
 
-                    foreach (var tradingDay in stockHistoryData)
+                    return new SimpleMovingAverageChartSeries[1]
                     {
-                        var movingAvg = smaCalculator.CalculateMovingAverage(tradingDay.AdjClose);
-
-                        smaChartSeries.Data.Add(new LineSeriesDataPoint
-                        {
-                            X = tradingDay.Date,
-                            Y = movingAvg
-                        });
-                    }
-
-                    this.numUpperCharts++;
-
-                    return new SimpleMovingAverageChartSeries[1] 
-                    {
-                        smaChartSeries
+                        new SimpleMovingAverageChartSeries(
+                            $"{stockChartSeriesRequest.Params}-Day SMA",
+                            StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
+                            stockHistoryData.Select(
+                                tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = smaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
+                                }))
                     };
-                case StockChartSeriesType.VOLUME:
+                case StockChartSeriesName.VOLUME:
                     this.numChartsCreated++;
-                    var volumeChartSeries = new VolumeChartSeries(this.numChartsCreated);
+                    var volumeData = new List<ColumnSeriesDataPoint>();
 
                     for (var i = 0; i < stockHistoryData.Count; i++)
                     {
-                        volumeChartSeries.Data.Add(
+                        volumeData.Add(
                             new ColumnSeriesDataPoint
                             {
                                 X = stockHistoryData[i].Date,
@@ -145,6 +130,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     : StockChartSeriesColor.UP_PRICE
                             });
                     }
+
+                    var volumeChartSeries = new VolumeChartSeries(this.numChartsCreated, volumeData);
 
                     return new VolumeChartSeries[1] { volumeChartSeries };
                 default:

@@ -8,10 +8,10 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 {
     public class ChartType
     {
-        public const string CHART_TYPE_CANDLESTICK = "candlestick";
+        public const string CANDLESTICK = "candlestick";
 
-        public const string CHART_TYPE_COLUMN = "column";
+        public const string COLUMN = "column";
 
-        public const string CHART_TYPE_LINE = "line";
+        public const string LINE = "line";
     }
 }

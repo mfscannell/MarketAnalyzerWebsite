@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.Enums;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
 
 namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 {
@@ -12,9 +13,10 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
     {
         #region Constructors
 
-        public PriceChartSeries() : base()
+        public PriceChartSeries(IEnumerable<PriceSeriesDataPoint> dataPoints) : base()
         {
-            Type = ChartType.CHART_TYPE_CANDLESTICK;
+            Type = ChartType.CANDLESTICK;
+            this.Data = dataPoints;
         }
 
         #endregion
