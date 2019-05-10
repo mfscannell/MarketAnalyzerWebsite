@@ -81,7 +81,7 @@
                     var newDatum = {};
 
                     Object.keys(result[i].Data[j]).forEach(function (key) {
-                        newDatum[key.charAt(0).toLowerCase() + key.slice(1)] = result[i].Data[j][key];
+                        newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
                     });
 
                     chartSeries.data.push(newDatum);
@@ -149,7 +149,129 @@
 }
 
 $(document).ready(function () {
-    $('#btnUpdateChart').click(getStockHistory);
+    //$('#btnUpdateChart').click(getStockHistory);
+
+    $('#btnUpdateChart').click(function () {
+        var uppersList = [];
+        var lowersList = [];
+
+        $('.upperIndicator').each(function (index) {
+            var indicatorType = $(this).find('.indicatorType').text();
+            var indicatorParameters = $(this).find('.indicatorParameters').text();
+
+            uppersList.push({ type: indicatorType, params: indicatorParameters });
+        });
+
+        $('.lowerIndicator').each(function (index) {
+            var indicatorType = $(this).find('.indicatorType').text();
+            var indicatorParameters = $(this).find('.indicatorParameters').text();
+
+            lowersList.push({ type: indicatorType, params: indicatorParameters });
+        });
+
+        var tickerSymbol = $('#h2TickerSymbol').text();
+        var chartBeginDate = $('#edtChartBeginDate').val();
+        var chartEndDate = $('#edtChartEndDate').val();
+
+        FinanceDataServiceClient.getStockHistoryData(
+            tickerSymbol,
+            chartBeginDate,
+            chartEndDate,
+            uppersList,
+            lowersList
+        ).then(function (result) {
+            var groupingUnits = [[
+                'day',
+                [1]
+            ]];
+
+            var series = [];
+
+            for (var i = 0; i < result.length; i++) {
+                for (var j = 0; j < result[i].Data.length; j++) {
+                    result[i].Data[j]['X'] = Date.parse(result[i].Data[j]['X']);
+                }
+
+                var chartSeries = {
+                    color: result[i].Color,
+                    type: result[i].Type,
+                    name: result[i].Name,
+                    dashStyle: result[i].DashStyle,
+                    data: [],
+                    dataGrouping: {
+                        units: groupingUnits
+                    },
+                    yAxis: result[i].YAxis
+                };
+
+                for (var j = 0; j < result[i].Data.length; j++) {
+                    var newDatum = {};
+
+                    Object.keys(result[i].Data[j]).forEach(function (key) {
+                        newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
+                    });
+
+                    chartSeries.data.push(newDatum);
+                }
+
+                if (chartSeries.type == 'line') {
+                    chartSeries.lineWidth = 1;
+                }
+
+                series.push(chartSeries);
+            }
+
+            Highcharts.stockChart('stockContainer', {
+                navigator: {
+                    enabled: false
+                },
+                rangeSelector: {
+                    enabled: false
+                },
+                scrollBar: {
+                    enabled: false
+                },
+                title: {
+                    text: tickerSymbol
+                },
+                xAxis: [{
+                    min: new Date(chartBeginDate).getTime()
+                }],
+                yAxis: [{
+                    labels: {
+                        align: 'left',
+                        x: -3
+                    },
+                    title: {
+                        text: 'OHLC'
+                    },
+                    height: '60%',
+                    lineWidth: 2,
+                    resize: {
+                        enabled: true
+                    }
+                }, {
+                    labels: {
+                        align: 'left',
+                        x: -3
+                    },
+                    title: {
+                        text: 'Volume'
+                    },
+                    top: '65%',
+                    height: '35%',
+                    offset: 0,
+                    lineWidth: 2
+                }],
+                tooltip: {
+                    split: true
+                },
+                series: series
+            });
+        }).catch(function (error) {
+            alert('ERROR!');
+        });
+    });
 
     $("#btnAddUpperIndicator").click(function () {
         var indicatorType = $("#upperIndicatorTypeSelect option:selected").text();
