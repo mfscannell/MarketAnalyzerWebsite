@@ -69,7 +69,7 @@
     <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
     <Compile Include="TechnicalIndicators\BollingerBandsCalculator.cs" />
     <Compile Include="TechnicalIndicators\Models\BollingerBandsValue.cs" />
-    <Compile Include="TechnicalIndicators\RelativeStrengthCalculator.cs" />
+    <Compile Include="TechnicalIndicators\RelativeStrengthIndexCalculator.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
   </ItemGroup>
   <ItemGroup />
