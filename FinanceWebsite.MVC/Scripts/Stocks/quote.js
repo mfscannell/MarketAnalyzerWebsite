@@ -1,4 +1,19 @@
-﻿$(document).ready(function () {
+﻿function generateHtmlForSelectedTechnicalIndicator(upperLower, type, params) {
+    var newListItem = '';
+    newListItem += '<div class="container">';
+    newListItem += `<div class="row ${upperLower}Indicator">`;
+    newListItem += '<div class="col-md-7 indicatorType">' + type + '</div>';
+    newListItem += '<div class="col-md-2 indicatorParameters">' + params + '</div>';
+    newListItem += '<div class="col-md-1">';
+    newListItem += `<button type="submit" class="remove${StringUtilities.upperCaseFirstLetter(upperLower)}Indicator btn btn-danger">-</button>`;
+    newListItem += '</div>';
+    newListItem += '</div>';
+    newListItem += '</div>';
+
+    return newListItem;
+}
+
+$(document).ready(function () {
     $('#btnUpdateChart').click(function () {
         var uppersList = [];
         var lowersList = [];
@@ -26,130 +41,105 @@
             chartBeginDate,
             chartEndDate,
             uppersList,
-            lowersList
-        ).then(function (result) {
-            var groupingUnits = [[
-                'day',
-                [1]
-            ]];
+            lowersList).then(function (result) {
+                var series = [];
 
-            var series = [];
+                for (var i = 0; i < result.length; i++) {
+                    var chartSeries = {
+                        data: []
+                    };
 
-            for (var i = 0; i < result.length; i++) {
-                for (var j = 0; j < result[i].Data.length; j++) {
-                    result[i].Data[j]['X'] = Date.parse(result[i].Data[j]['X']);
-                }
-
-                var chartSeries = {
-                    color: result[i].Color,
-                    type: result[i].Type,
-                    name: result[i].Name,
-                    dashStyle: result[i].DashStyle,
-                    data: [],
-                    dataGrouping: {
-                        units: groupingUnits
-                    },
-                    yAxis: result[i].YAxis
-                };
-
-                for (var j = 0; j < result[i].Data.length; j++) {
-                    var newDatum = {};
-
-                    Object.keys(result[i].Data[j]).forEach(function (key) {
-                        newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
+                    Object.keys(result[i]).forEach(function (key) {
+                        if (key !== 'Data') {
+                            chartSeries[StringUtilities.lowerCaseFirstLetter(key)] = result[i][key];
+                        }
                     });
 
-                    chartSeries.data.push(newDatum);
-                }
+                    chartSeries.dataGrouping = {
+                        units: [[
+                            'day',
+                            [1]
+                        ]]
+                    };
 
-                if (chartSeries.type == 'line') {
-                    chartSeries.lineWidth = 1;
-                }
+                    for (var j = 0; j < result[i].Data.length; j++) {
+                        result[i].Data[j]['X'] = Date.parse(result[i].Data[j]['X']);
+                        var newDatum = {};
 
-                series.push(chartSeries);
-            }
+                        Object.keys(result[i].Data[j]).forEach(function (key) {
+                            newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
+                        });
 
-            Highcharts.stockChart('stockContainer', {
-                navigator: {
-                    enabled: false
-                },
-                rangeSelector: {
-                    enabled: false
-                },
-                scrollBar: {
-                    enabled: false
-                },
-                title: {
-                    text: tickerSymbol
-                },
-                xAxis: [{
-                    min: new Date(chartBeginDate).getTime()
-                }],
-                yAxis: [{
-                    labels: {
-                        align: 'left',
-                        x: -3
-                    },
-                    title: {
-                        text: 'OHLC'
-                    },
-                    height: '60%',
-                    lineWidth: 2,
-                    resize: {
-                        enabled: true
+                        chartSeries.data.push(newDatum);
                     }
-                }, {
-                    labels: {
-                        align: 'left',
-                        x: -3
+
+                    series.push(chartSeries);
+                }
+
+                Highcharts.stockChart('stockContainer', {
+                    navigator: {
+                        enabled: false
+                    },
+                    rangeSelector: {
+                        enabled: false
+                    },
+                    scrollBar: {
+                        enabled: false
                     },
                     title: {
-                        text: 'Volume'
+                        text: tickerSymbol
                     },
-                    top: '65%',
-                    height: '35%',
-                    offset: 0,
-                    lineWidth: 2
-                }],
-                tooltip: {
-                    split: true
-                },
-                series: series
+                    xAxis: [{
+                        min: new Date(chartBeginDate).getTime()
+                    }],
+                    yAxis: [{
+                        labels: {
+                            align: 'left',
+                            x: -3
+                        },
+                        title: {
+                            text: 'OHLC'
+                        },
+                        height: '60%',
+                        lineWidth: 2,
+                        resize: {
+                            enabled: true
+                        }
+                    }, {
+                        labels: {
+                            align: 'left',
+                            x: -3
+                        },
+                        title: {
+                            text: 'Volume'
+                        },
+                        top: '65%',
+                        height: '35%',
+                        offset: 0,
+                        lineWidth: 2
+                    }],
+                    tooltip: {
+                        split: true
+                    },
+                    series: series
+                });
+            }).catch(function (error) {
+                alert('ERROR!');
             });
-        }).catch(function (error) {
-            alert('ERROR!');
-        });
     });
 
     $("#btnAddUpperIndicator").click(function () {
         var indicatorType = $("#upperIndicatorTypeSelect option:selected").text();
         var indicatorParameters = $("#upperIndicatorParametersInput").val();
-        var newListItem = '';
-        newListItem += '<div class="container">';
-        newListItem += '<div class="row upperIndicator">';
-        newListItem += '<div class="col-md-7 indicatorType">' + indicatorType + '</div>';
-        newListItem += '<div class="col-md-2 indicatorParameters">' + indicatorParameters + '</div>';
-        newListItem += '<div class="col-md-1">';
-        newListItem += '<button type="submit" class="removeUpperIndicator btn btn-danger">-</button>';
-        newListItem += '</div>';
-        newListItem += '</div>';
-        newListItem += '</div>';
+        var newListItem = generateHtmlForSelectedTechnicalIndicator('upper', indicatorType, indicatorParameters);
         $("#selectedUpperIndicators").append(newListItem);
     });
 
     $("#btnAddLowerIndicator").click(function () {
         var indicatorType = $("#lowerIndicatorTypeSelect option:selected").text();
         var indicatorParameters = $("#lowerIndicatorParametersInput").val();
-        var newListItem = '';
-        newListItem += '<div class="container">';
-        newListItem += '<div class="row lowerIndicator">';
-        newListItem += '<div class="col-md-7 indicatorType">' + indicatorType + '</div>';
-        newListItem += '<div class="col-md-2 indicatorParameters">' + indicatorParameters + '</div>';
-        newListItem += '<div class="col-md-1">';
-        newListItem += '<button type="submit" class="removeLowerIndicator btn btn-danger">-</button>';
-        newListItem += '</div>';
-        newListItem += '</div>';
-        newListItem += '</div>';
+
+        var newListItem = generateHtmlForSelectedTechnicalIndicator('lower', indicatorType, indicatorParameters);
         $("#selectedLowerIndicators").append(newListItem);
     });
 

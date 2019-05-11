@@ -16,9 +16,10 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
         public ChartSeries()
         {
             DashStyle = Enums.DashStyle.SOLID;
-            Type = string.Empty;
-            Name = string.Empty;
             Data = new List<SeriesDataPoint>();
+            LineWidth = 1;
+            Name = string.Empty;
+            Type = string.Empty;
             YAxis = 0;
         }
 
@@ -30,11 +31,13 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 
         public string DashStyle { get; set; }
 
-        public string Type { get; set; }
+        public IEnumerable<SeriesDataPoint> Data { get; set; }
+
+        public int LineWidth { get; set; }
 
         public string Name { get; set; }
 
-        public IEnumerable<SeriesDataPoint> Data { get; set; }
+        public string Type { get; set; }
 
         public int YAxis { get; set; }
 
