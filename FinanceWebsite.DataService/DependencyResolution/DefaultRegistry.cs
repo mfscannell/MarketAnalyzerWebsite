@@ -29,7 +29,6 @@ namespace FinanceWebsite.DataService.DependencyResolution {
                 scan => {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
-					scan.With(new ControllerConvention());
                 });
             For<IGetStockHistory>().Use<YahooStockClient>();
         }
