@@ -77,6 +77,12 @@ namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicator
 
             rsi = rsiCalculator.CalculateRelativeStrengthIndex(45.64);
             Assert.AreEqual(57.92, rsi, 0.005);
+
+            rsi = rsiCalculator.CalculateRelativeStrengthIndex(46.21);
+            Assert.AreEqual(62.88, rsi, 0.005);
+
+            rsi = rsiCalculator.CalculateRelativeStrengthIndex(46.25);
+            Assert.AreEqual(63.21, rsi, 0.005);
         }
     }
 }

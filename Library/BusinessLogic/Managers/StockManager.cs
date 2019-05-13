@@ -4,21 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FinanceWebsite.Library.BusinessLogic.Enums;
+using FinanceWebsite.Library.BusinessLogic.Factories;
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
-using FinanceWebsite.FinanceClient.YahooClient;
-using FinanceWebsite.Library.BusinessLogic.Factories;
-using FinanceWebsite.Library.BusinessLogic.Enums;
+
+using FinanceWebsite.StockClient.Generic;
+using FinanceWebsite.StockClient.YahooClient;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
     public class StockManager
     {
+        #region Private Fields
+
+        private IGetStockHistory stockHistoryClient;
+
+        #endregion
+
         #region Constructors and Destructors
 
-        public StockManager()
+        public StockManager(IGetStockHistory stockHistoryClient)
         {
-
+            this.stockHistoryClient = stockHistoryClient;
         }
 
         #endregion
@@ -54,16 +62,16 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
 
         public async Task<IEnumerable<ChartSeries>> GetStockChartSeries(StockChartRequest request)
         {
-            var yahooHistory = await Historical.GetPriceAsync(
+            var stockHistory = await this.stockHistoryClient.GetPriceAsync(
                 request.StockHistoryDataRequest.TickerSymbol, 
-                request.StockHistoryDataRequest.TechnicalAnalysisBeginDate, 
-                request.StockHistoryDataRequest.TechnicalAnalysisEndDate);
+                request.StockHistoryDataRequest.DataBeginDate,
+                request.StockHistoryDataRequest.DataEndDate);
             
             var chartSeriesFactory = new StockChartSeriesFactory();
 
             var stockChartSeries = request.StockChartSeriesRequest.SelectMany(
                 chartSeriesRequest => chartSeriesFactory.GenerateChartSeries(
-                        chartSeriesRequest, yahooHistory));
+                        chartSeriesRequest, stockHistory));
 
             return stockChartSeries;
         }

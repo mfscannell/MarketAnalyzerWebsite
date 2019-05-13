@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FinanceWebsite.Library.BusinessLogic.Enums;
 using FinanceWebsite.Library.BusinessLogic.Requests;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
-using FinanceWebsite.Library.BusinessLogic.Enums;
-
-using FinanceWebsite.FinanceClient.YahooClient.Models;
+using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 
-using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
+using FinanceWebsite.StockClient.Models;
 
 namespace FinanceWebsite.Library.BusinessLogic.Factories
 {
@@ -102,6 +101,21 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     return new PriceChartSeries[1]
                     {
                         new PriceChartSeries(priceData)
+                    };
+                case StockChartSeriesName.RSI:
+                    this.numberOfChartsCreated++;
+                    var rsiCalculator = new RelativeStrengthIndexCalculator(int.Parse(stockChartSeriesRequest.Params));
+
+                    return new RelativeStrengthIndexChartSeries[1]
+                    {
+                        new RelativeStrengthIndexChartSeries(
+                            this.numberOfChartsCreated,
+                            stockHistoryData.Select(tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = rsiCalculator.CalculateRelativeStrengthIndex(tradingDay.AdjClose)
+                                }))
                     };
                 case StockChartSeriesName.SMA:
                     this.numberOfUpperSeriesCreated++;

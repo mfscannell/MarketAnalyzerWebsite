@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
-using FinanceWebsite.FinanceClient.YahooClient.Models;
+
+using FinanceWebsite.StockClient.Models;
 
 namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicators
 {

@@ -12,9 +12,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
 
         public DateTime ChartEndDate { get; set; }
 
-        public DateTime TechnicalAnalysisBeginDate { get; set; }
+        public DateTime DataBeginDate { get; set; }
 
-        public DateTime TechnicalAnalysisEndDate { get; set; }
+        public DateTime DataEndDate { get; set; }
 
         public string TickerSymbol { get; set; }
     }

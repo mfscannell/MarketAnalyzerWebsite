@@ -32,6 +32,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
                     return int.Parse(this.Params) * -2;
                 case StockChartSeriesName.PRICE:
                     return 0;
+                case StockChartSeriesName.RSI:
+                    return -350;
                 case StockChartSeriesName.SMA:
                     return int.Parse(this.Params) * -2;
                 case StockChartSeriesName.VOLUME:

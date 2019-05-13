@@ -151,6 +151,6 @@ C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\obj\Debug\FinanceWebsite.MVC.csp
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\obj\Debug\FinanceWebsite.MVC.dll
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\obj\Debug\FinanceWebsite.MVC.pdb
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Library.BusinessLogic.dll
-C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.FinanceClient.YahooClient.dll
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Library.BusinessLogic.pdb
-C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.FinanceClient.YahooClient.pdb
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.StockClient.dll
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.StockClient.pdb

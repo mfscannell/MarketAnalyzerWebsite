@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models;
-using FinanceWebsite.FinanceClient.YahooClient.Models;
+
+using FinanceWebsite.StockClient.Models;
 
 namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 {

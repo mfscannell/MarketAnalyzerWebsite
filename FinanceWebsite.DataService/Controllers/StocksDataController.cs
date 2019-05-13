@@ -14,10 +14,29 @@ using FinanceWebsite.Library.BusinessLogic.Managers;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.Library.BusinessLogic.Enums;
 
+using FinanceWebsite.StockClient.Generic;
+
 namespace FinanceWebsite.DataService.Controllers
 {
     public class StocksDataController : ApiController
     {
+        #region Private Fields
+
+        private readonly StockManager stockManager;
+
+        #endregion
+
+        #region Constructors
+
+        public StocksDataController(IGetStockHistory stockHistoryClient)
+        {
+            this.stockManager = new StockManager(stockHistoryClient);
+        }
+
+        #endregion
+
+        #region Public APIs
+
         [EnableCors(origins: "http://localhost:58607", headers: "*", methods: "*")]
         [HttpGet]
         [Route("DataApi/stocks/history")]
@@ -26,17 +45,12 @@ namespace FinanceWebsite.DataService.Controllers
             var parsedUppers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(uppers);
             var parsedLowers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(lowers);
 
-            var technicalAnalysisBeginDateDifference = 0;
-
-            foreach (var upper in parsedUppers)
-            {
-                var upperPrevDays = upper.GetNumPreviousCalendarDays();
-
-                if (upperPrevDays < technicalAnalysisBeginDateDifference)
-                {
-                    technicalAnalysisBeginDateDifference = upperPrevDays;
-                }
-            }
+            var smallestUpper = parsedUppers.Count == 0 
+                ? 0 
+                : parsedUppers.Select(upper => upper.GetNumPreviousCalendarDays()).Min();
+            var smallestLower = parsedLowers.Count == 0 
+                ? 0 
+                : parsedLowers.Select(lower => lower.GetNumPreviousCalendarDays()).Min();
 
             var request = new StockChartRequest
             {
@@ -44,8 +58,8 @@ namespace FinanceWebsite.DataService.Controllers
                 {
                     ChartBeginDate = beginDate,
                     ChartEndDate = endDate,
-                    TechnicalAnalysisBeginDate = beginDate.AddDays(technicalAnalysisBeginDateDifference),
-                    TechnicalAnalysisEndDate = endDate.AddDays(1),
+                    DataBeginDate = beginDate.AddDays(Math.Min(smallestLower, smallestUpper)),
+                    DataEndDate = endDate.AddDays(1),
                     TickerSymbol = tickerSymbol
                 },
                 StockChartSeriesRequest = new List<StockChartSeriesRequest>
@@ -64,10 +78,14 @@ namespace FinanceWebsite.DataService.Controllers
             };
 
             request.StockChartSeriesRequest.AddRange(parsedUppers);
-            var stockManager = new StockManager();
-            var result = await stockManager.GetStockChartSeries(request);
+            //TODO
+            // request.StockChartSeriesRequest.AddRange(parsedLowers);
+            //var stockManager = new StockManager();
+            var result = await this.stockManager.GetStockChartSeries(request);
 
             return result;
         }
+
+        #endregion
     }
 }

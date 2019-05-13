@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FinanceWebsite.FinanceClient.YahooClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FinanceWebsite.StockClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Build\FinanceWebsite.FinanceClient.YahooClient.dll</HintPath>
+      <HintPath>..\..\Build\FinanceWebsite.StockClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,6 +64,7 @@
     <Compile Include="Responses\ChartSeries\LowerBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\MiddleBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\PriceChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\RelativeStrengthIndexChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\SimpleMovingAverageChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\UpperBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
