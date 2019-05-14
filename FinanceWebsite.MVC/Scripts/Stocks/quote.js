@@ -63,11 +63,14 @@ $(document).ready(function () {
                     };
 
                     for (var j = 0; j < result[i].Data.length; j++) {
-                        result[i].Data[j]['X'] = Date.parse(result[i].Data[j]['X']);
                         var newDatum = {};
 
                         Object.keys(result[i].Data[j]).forEach(function (key) {
-                            newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
+                            if (key !== 'X') {
+                                newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
+                            } else {
+                                newDatum['x'] = Date.parse(result[i].Data[j]['X']);
+                            }
                         });
 
                         chartSeries.data.push(newDatum);
@@ -75,6 +78,49 @@ $(document).ready(function () {
 
                     series.push(chartSeries);
                 }
+
+                var yAxis = [{
+                    labels: {
+                        align: 'left',
+                        x: -3
+                    },
+                    title: {
+                        text: 'OHLC'
+                    },
+                    height: '40%',
+                    lineWidth: 2,
+                    resize: {
+                        enabled: true
+                    }
+                }, {
+                    labels: {
+                        align: 'left',
+                        x: -3
+                    },
+                    title: {
+                        text: 'Volume'
+                    },
+                    top: '40%',
+                    height: '15%',
+                    offset: 0,
+                    lineWidth: 2
+                    }];
+
+                lowersList.forEach(function (lower) {
+                    yAxis.push({
+                        labels: {
+                            align: 'left',
+                            x: -3
+                        },
+                        title: {
+                            text: lower.type
+                        },
+                        top: `${40 + 15 * (yAxis.length - 1)}%`,
+                        height: '15%',
+                        offset: 0,
+                        lineWidth: 2
+                    });
+                });
 
                 Highcharts.stockChart('stockContainer', {
                     navigator: {
@@ -92,32 +138,7 @@ $(document).ready(function () {
                     xAxis: [{
                         min: new Date(chartBeginDate).getTime()
                     }],
-                    yAxis: [{
-                        labels: {
-                            align: 'left',
-                            x: -3
-                        },
-                        title: {
-                            text: 'OHLC'
-                        },
-                        height: '60%',
-                        lineWidth: 2,
-                        resize: {
-                            enabled: true
-                        }
-                    }, {
-                        labels: {
-                            align: 'left',
-                            x: -3
-                        },
-                        title: {
-                            text: 'Volume'
-                        },
-                        top: '65%',
-                        height: '35%',
-                        offset: 0,
-                        lineWidth: 2
-                    }],
+                    yAxis: yAxis,
                     tooltip: {
                         split: true
                     },

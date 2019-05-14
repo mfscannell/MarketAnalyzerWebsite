@@ -79,8 +79,7 @@ namespace FinanceWebsite.DataService.Controllers
 
             request.StockChartSeriesRequest.AddRange(parsedUppers);
             //TODO
-            // request.StockChartSeriesRequest.AddRange(parsedLowers);
-            //var stockManager = new StockManager();
+            request.StockChartSeriesRequest.AddRange(parsedLowers);
             var result = await this.stockManager.GetStockChartSeries(request);
 
             return result;

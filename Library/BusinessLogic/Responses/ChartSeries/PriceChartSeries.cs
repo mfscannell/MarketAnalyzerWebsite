@@ -15,6 +15,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries
 
         public PriceChartSeries(IEnumerable<PriceSeriesDataPoint> dataPoints) : base()
         {
+            this.Name = StockChartSeriesName.PRICE;
             this.Type = ChartType.CANDLESTICK;
             this.Data = dataPoints;
         }
