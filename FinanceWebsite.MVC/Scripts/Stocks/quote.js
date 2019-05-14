@@ -32,7 +32,7 @@ $(document).ready(function () {
             lowersList.push({ type: indicatorType, params: indicatorParameters });
         });
 
-        var tickerSymbol = $('#h2TickerSymbol').text();
+        var tickerSymbol = $('#inputTickerSymbol').val();
         var chartBeginDate = $('#edtChartBeginDate').val();
         var chartEndDate = $('#edtChartEndDate').val();
 

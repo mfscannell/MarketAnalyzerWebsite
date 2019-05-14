@@ -10,11 +10,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Quote Result</h2>
-<h2 id="h2TickerSymbol">@Model.TickerSymbol.ToUpper()</h2>
-
 <div class="container">
     <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(m => m.TickerSymbol)
+                @Html.TextBoxFor(
+                    model => model.TickerSymbol,
+                    new
+                    {
+                        @class = "form-control",
+                        @id = "inputTickerSymbol"
+                    })
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="form-group">
                 @Html.LabelFor(m => m.ChartBeginDate)
@@ -48,64 +57,69 @@
             </div>
         </div>
     </div>
-
-
-
-    <div class="row">
-        <div class="col-md-6">
-            <label>Upper Indicators</label>
-        </div>
-        <div class="col-md-6">
-            <label>Lower Indicators</label>
-        </div>
-    </div>
     <div class="row form-group">
         <div class="col-md-3">
-            @Html.DropDownList(
-               "upperIndicatorTypeSelect",
-               StockManager.AvailableUpperTechnicalIndicators.Select(
-                   item => new SelectListItem
-                   {
-                       Text = item,
-                       Value = item
-                   }), new { @class = "form-control"})
+            <div class="form-group">
+                @Html.Label("Upper Indicators")
+                @Html.DropDownList(
+                   "upperIndicatorTypeSelect",
+                   StockManager.AvailableUpperTechnicalIndicators.Select(
+                       item => new SelectListItem
+                       {
+                           Text = item,
+                           Value = item
+                       }), new { @class = "form-control"})
+            </div>
         </div>
         <div class="col-md-2">
-            <input class="form-control" id="upperIndicatorParametersInput" />
+            <div class="form-group">
+                <input class="form-control" id="upperIndicatorParametersInput" />
+            </div>
         </div>
         <div class="col-md-1">
-            <button id="btnAddUpperIndicator" type="submit" class="btn btn-primary">+</button>
+            <div class="form-group">
+                <button id="btnAddUpperIndicator" type="submit" class="btn btn-primary">+</button>
+            </div>
         </div>
         <div class="col-md-3">
-            @Html.DropDownList(
-               "lowerIndicatorTypeSelect",
-               StockManager.AvailableLowerTechnicalIndicators.Select(
-                   item => new SelectListItem
-                   {
-                       Text = item,
-                       Value = item
-                   }), new { @class = "form-control" })
+            <div class="form-group">
+                @Html.Label("Lower Indicators")
+                @Html.DropDownList(
+                   "lowerIndicatorTypeSelect",
+                   StockManager.AvailableLowerTechnicalIndicators.Select(
+                       item => new SelectListItem
+                       {
+                           Text = item,
+                           Value = item
+                       }), new { @class = "form-control" })
+            </div>
         </div>
         <div class="col-md-2">
-            <input class="form-control" id="lowerIndicatorParametersInput" />
+            <div class="form-group">
+                <input class="form-control" id="lowerIndicatorParametersInput" />
+            </div>
         </div>
         <div class="col-md-1">
-            <button id="btnAddLowerIndicator" type="submit" class="btn btn-primary">+</button>
+            <div class="form-group">
+                <button id="btnAddLowerIndicator" type="submit" class="btn btn-primary">+</button>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownUpperIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Selected Upper Indicators
-                </button>
-                <div class="dropdown-menu" id="selectedUpperIndicators" aria-labelledby="dropDownUpperIndicators">
-                    <div class="container">
-                        <div class="row upperIndicator">
-                            <div class="col-md-7 indicatorType">SMA</div>
-                            <div class="col-md-2 indicatorParameters">10</div>
-                            <div class="col-md-1">
-                                <button type="submit" class="removeUpperIndicator btn btn-danger">-</button>
+                <div class="form-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownUpperIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selected Upper Indicators
+                    </button>
+                    <div class="dropdown-menu" id="selectedUpperIndicators" aria-labelledby="dropDownUpperIndicators">
+                        <div class="container">
+                            <div class="row upperIndicator">
+                                <div class="col-md-7 indicatorType">SMA</div>
+                                <div class="col-md-2 indicatorParameters">10</div>
+                                <div class="col-md-1">
+                                    <button type="submit" class="removeUpperIndicator btn btn-danger">-</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,16 +129,18 @@
 
         <div class="col-md-6">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownLowerIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Selected Lower Indicators
-                </button>
-                <div class="dropdown-menu" id="selectedLowerIndicators" aria-labelledby="dropDownLowerIndicators">
-                    <div class="container">
-                        <div class="row lowerIndicator">
-                            <div class="col-md-7 indicatorType">RSI</div>
-                            <div class="col-md-2 indicatorParameters">14</div>
-                            <div class="col-md-1">
-                                <button type="submit" class="removeLowerIndicator btn btn-danger">-</button>
+                <div class="form-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownLowerIndicators" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selected Lower Indicators
+                    </button>
+                    <div class="dropdown-menu" id="selectedLowerIndicators" aria-labelledby="dropDownLowerIndicators">
+                        <div class="container">
+                            <div class="row lowerIndicator">
+                                <div class="col-md-7 indicatorType">RSI</div>
+                                <div class="col-md-2 indicatorParameters">14</div>
+                                <div class="col-md-1">
+                                    <button type="submit" class="removeLowerIndicator btn btn-danger">-</button>
+                                </div>
                             </div>
                         </div>
                     </div>
