@@ -42,41 +42,17 @@ $(document).ready(function () {
             chartEndDate,
             uppersList,
             lowersList).then(function (result) {
-                var series = [];
-
                 for (var i = 0; i < result.length; i++) {
-                    var chartSeries = {
-                        data: []
-                    };
-
-                    Object.keys(result[i]).forEach(function (key) {
-                        if (key !== 'Data') {
-                            chartSeries[StringUtilities.lowerCaseFirstLetter(key)] = result[i][key];
-                        }
-                    });
-
-                    chartSeries.dataGrouping = {
+                    result[i].dataGrouping = {
                         units: [[
                             'day',
                             [1]
                         ]]
                     };
 
-                    for (var j = 0; j < result[i].Data.length; j++) {
-                        var newDatum = {};
-
-                        Object.keys(result[i].Data[j]).forEach(function (key) {
-                            if (key !== 'X') {
-                                newDatum[StringUtilities.lowerCaseFirstLetter(key)] = result[i].Data[j][key];
-                            } else {
-                                newDatum['x'] = Date.parse(result[i].Data[j]['X']);
-                            }
-                        });
-
-                        chartSeries.data.push(newDatum);
+                    for (var j = 0; j < result[i].data.length; j++) {
+                        result[i].data[j]['x'] = Date.parse(result[i].data[j]['x']);
                     }
-
-                    series.push(chartSeries);
                 }
 
                 var yAxis = [{
@@ -142,7 +118,7 @@ $(document).ready(function () {
                     tooltip: {
                         split: true
                     },
-                    series: series
+                    series: result
                 });
             }).catch(function (error) {
                 alert('ERROR!');
