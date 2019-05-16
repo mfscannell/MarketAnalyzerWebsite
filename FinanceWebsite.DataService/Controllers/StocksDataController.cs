@@ -66,12 +66,12 @@ namespace FinanceWebsite.DataService.Controllers
                 {
                     new StockChartSeriesRequest
                     {
-                        Type = StockChartSeriesName.PRICE,
+                        Type = StockChartSeriesNameEnum.Price,
                         Params = string.Empty
                     },
                     new StockChartSeriesRequest
                     {
-                        Type = StockChartSeriesName.VOLUME,
+                        Type = StockChartSeriesNameEnum.Volume,
                         Params = string.Empty
                     }
                 }

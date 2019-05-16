@@ -43,7 +43,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
         {
             switch (stockChartSeriesRequest.Type)
             {
-                case StockChartSeriesName.BOLLINGER_BANDS:
+                case StockChartSeriesNameEnum.BollingerBands:
                     this.numberOfUpperSeriesCreated += 3;
                     var bollingerBandsCalculator = new BollingerBandsCalculator(
                         BollingerBandsCalculator.ParseNumDays(stockChartSeriesRequest.Params),
@@ -75,7 +75,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     Y = bbValue.LowerBandValue
                                 }))
                     };
-                case StockChartSeriesName.PRICE:
+                case StockChartSeriesNameEnum.Price:
                     var priceData = new List<PriceSeriesDataPoint>();
 
                     for (var i = 0; i < stockHistoryData.Count; i++)
@@ -102,7 +102,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     {
                         new PriceChartSeries(priceData)
                     };
-                case StockChartSeriesName.RSI:
+                case StockChartSeriesNameEnum.Rsi:
                     this.numberOfChartsCreated++;
                     var rsiCalculator = new RelativeStrengthIndexCalculator(int.Parse(stockChartSeriesRequest.Params));
 
@@ -117,7 +117,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     Y = rsiCalculator.CalculateRelativeStrengthIndex(tradingDay.AdjClose)
                                 }))
                     };
-                case StockChartSeriesName.SMA:
+                case StockChartSeriesNameEnum.Sma:
                     this.numberOfUpperSeriesCreated++;
                     var smaCalculator = new SimpleMovingAverageCalculator(int.Parse(stockChartSeriesRequest.Params));
 
@@ -134,7 +134,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     Y = smaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
                                 }))
                     };
-                case StockChartSeriesName.VOLUME:
+                case StockChartSeriesNameEnum.Volume:
                     this.numberOfChartsCreated++;
                     var volumeData = new List<ColumnSeriesDataPoint>();
 

@@ -35,8 +35,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Build\FinanceWebsite.StockClient.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +54,7 @@
     <Compile Include="Enums\DashStyle.cs" />
     <Compile Include="Enums\StockChartSeriesColor.cs" />
     <Compile Include="Enums\StockChartSeriesName.cs" />
+    <Compile Include="Enums\StockChartSeriesNameEnum.cs" />
     <Compile Include="Factories\StockChartSeriesFactory.cs" />
     <Compile Include="Interfaces\IFinanceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +79,8 @@
     <Compile Include="TechnicalIndicators\RelativeStrengthIndexCalculator.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,9 @@ using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.StockClient.Generic;
 using FinanceWebsite.StockClient.YahooClient;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
     public class StockManager
