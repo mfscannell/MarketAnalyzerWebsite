@@ -17,7 +17,7 @@ using Newtonsoft.Json.Converters;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
-    public class StockManager
+    public class StockManager : IStockManager
     {
         #region Private Fields
 
@@ -43,7 +43,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
                 return new List<string>
                 {
                     StockChartSeriesName.BOLLINGER_BANDS,
-                    StockChartSeriesName.SMA
+                    StockChartSeriesName.SMA,
+                    StockChartSeriesName.VWMA
                 };
             }
         }

@@ -57,12 +57,14 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
                 case StockChartSeriesNameEnum.BollingerBands:
                     return BollingerBandsCalculator.ParseNumDays(this.Params) * -2;
                 case StockChartSeriesNameEnum.Ema:
-                    return int.Parse(this.Params) * -2;
+                    return int.Parse(this.Params) * -3;
                 case StockChartSeriesNameEnum.Price:
                     return 0;
                 case StockChartSeriesNameEnum.Rsi:
                     return -350;
                 case StockChartSeriesNameEnum.Sma:
+                    return int.Parse(this.Params) * -2;
+                case StockChartSeriesNameEnum.Vwma:
                     return int.Parse(this.Params) * -2;
                 case StockChartSeriesNameEnum.Volume:
                     return 0;

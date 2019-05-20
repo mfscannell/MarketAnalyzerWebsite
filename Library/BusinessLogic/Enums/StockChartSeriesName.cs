@@ -22,6 +22,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string SMA = "SMA";
 
+        public const string VWMA = "VWMA";
+
         public const string VOLUME = "Volume";
 
         #endregion

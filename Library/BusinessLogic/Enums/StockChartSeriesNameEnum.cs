@@ -23,14 +23,21 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
         [Description("EMA")]
         Ema,
 
+        [EnumMember(Value = "Price")]
         Price,
 
+        [EnumMember(Value = "Rsi")]
         Rsi,
 
         [Description("SMA")]
         [EnumMember(Value = "SMA")]
         Sma,
 
+        [Description("VWMA")]
+        [EnumMember(Value = "VWMA")]
+        Vwma,
+
+        [EnumMember(Value = "Volume")]
         Volume
     }
 }

@@ -57,6 +57,7 @@
     <Compile Include="Enums\StockChartSeriesNameEnum.cs" />
     <Compile Include="Factories\StockChartSeriesFactory.cs" />
     <Compile Include="Interfaces\IFinanceClient.cs" />
+    <Compile Include="Managers\IStockManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\StockChartRequest.cs" />
     <Compile Include="Requests\StockChartSeriesRequest.cs" />
@@ -74,10 +75,12 @@
     <Compile Include="Responses\ChartSeries\SimpleMovingAverageChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\UpperBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
+    <Compile Include="Responses\ChartSeries\VolumeWeightedMovingAverageChartSeries.cs" />
     <Compile Include="TechnicalIndicators\BollingerBandsCalculator.cs" />
     <Compile Include="TechnicalIndicators\Models\BollingerBandsValue.cs" />
     <Compile Include="TechnicalIndicators\RelativeStrengthIndexCalculator.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
+    <Compile Include="TechnicalIndicators\VolumeWeightedMovingAverageCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

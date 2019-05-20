@@ -44,7 +44,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
             switch (stockChartSeriesRequest.Type)
             {
                 case StockChartSeriesNameEnum.BollingerBands:
-                    this.numberOfUpperSeriesCreated += 3;
+                    this.numberOfUpperSeriesCreated++;
                     var bollingerBandsCalculator = new BollingerBandsCalculator(
                         BollingerBandsCalculator.ParseNumDays(stockChartSeriesRequest.Params),
                         BollingerBandsCalculator.ParseNumStandardDeviations(stockChartSeriesRequest.Params));
@@ -132,6 +132,24 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                 {
                                     X = tradingDay.Date,
                                     Y = smaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
+                                }))
+                    };
+                case StockChartSeriesNameEnum.Vwma:
+                    this.numberOfUpperSeriesCreated++;
+                    var vwmaCalculator = new VolumeWeightedMovingAverageCalculator(
+                        int.Parse(stockChartSeriesRequest.Params));
+
+                    return new SimpleMovingAverageChartSeries[1]
+                    {
+                        new SimpleMovingAverageChartSeries(
+                            $"{stockChartSeriesRequest.Params}-Day VWMA",
+                            StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
+                            stockHistoryData.Select(
+                                tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = vwmaCalculator.CalculateMovingAverage(tradingDay.AdjClose, tradingDay.Volume)
                                 }))
                     };
                 case StockChartSeriesNameEnum.Volume:

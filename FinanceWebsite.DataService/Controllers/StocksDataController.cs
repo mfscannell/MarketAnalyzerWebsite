@@ -22,15 +22,15 @@ namespace FinanceWebsite.DataService.Controllers
     {
         #region Private Fields
 
-        private readonly StockManager stockManager;
+        private readonly IStockManager stockManager;
 
         #endregion
 
         #region Constructors
 
-        public StocksDataController(IGetStockHistory stockHistoryClient)
+        public StocksDataController(IStockManager stockManager)
         {
-            this.stockManager = new StockManager(stockHistoryClient);
+            this.stockManager = stockManager;
         }
 
         #endregion
@@ -78,7 +78,6 @@ namespace FinanceWebsite.DataService.Controllers
             };
 
             request.StockChartSeriesRequest.AddRange(parsedUppers);
-            //TODO
             request.StockChartSeriesRequest.AddRange(parsedLowers);
             var result = await this.stockManager.GetStockChartSeries(request);
 

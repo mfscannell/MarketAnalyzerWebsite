@@ -20,6 +20,7 @@ namespace FinanceWebsite.DataService.DependencyResolution {
     using StructureMap.Graph;
     using FinanceWebsite.StockClient.Generic;
     using FinanceWebsite.StockClient.YahooClient;
+    using FinanceWebsite.Library.BusinessLogic.Managers;
 	
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -30,6 +31,7 @@ namespace FinanceWebsite.DataService.DependencyResolution {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                 });
+            For<IStockManager>().Use<StockManager>();
             For<IGetStockHistory>().Use<YahooStockClient>();
         }
 
