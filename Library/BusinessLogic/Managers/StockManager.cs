@@ -43,6 +43,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
                 return new List<string>
                 {
                     StockChartSeriesName.BOLLINGER_BANDS,
+                    StockChartSeriesName.EMA,
                     StockChartSeriesName.SMA,
                     StockChartSeriesName.VWMA
                 };

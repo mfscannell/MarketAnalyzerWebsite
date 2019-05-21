@@ -75,6 +75,23 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     Y = bbValue.LowerBandValue
                                 }))
                     };
+                case StockChartSeriesNameEnum.Ema:
+                    this.numberOfUpperSeriesCreated++;
+                    var emaCalculator = new ExponentialMovingAverageCalculator(int.Parse(stockChartSeriesRequest.Params));
+
+                    return new SimpleMovingAverageChartSeries[1]
+                    {
+                        new SimpleMovingAverageChartSeries(
+                            $"{stockChartSeriesRequest.Params}-Day EMA",
+                            StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
+                            stockHistoryData.Select(
+                                tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = emaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
+                                }))
+                    };
                 case StockChartSeriesNameEnum.Price:
                     var priceData = new List<PriceSeriesDataPoint>();
 

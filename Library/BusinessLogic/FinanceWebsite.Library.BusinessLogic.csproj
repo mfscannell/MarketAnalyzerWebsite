@@ -68,6 +68,7 @@
     <Compile Include="Responses\ChartSeries\DataPoints\LineSeriesDataPoint.cs" />
     <Compile Include="Responses\ChartSeries\DataPoints\PriceSeriesDataPoint.cs" />
     <Compile Include="Responses\ChartSeries\DataPoints\SeriesDataPoint.cs" />
+    <Compile Include="Responses\ChartSeries\ExponentialMovingAverageChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\LowerBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\MiddleBollingerBandChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\PriceChartSeries.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Responses\ChartSeries\VolumeChartSeries.cs" />
     <Compile Include="Responses\ChartSeries\VolumeWeightedMovingAverageChartSeries.cs" />
     <Compile Include="TechnicalIndicators\BollingerBandsCalculator.cs" />
+    <Compile Include="TechnicalIndicators\ExponentialMovingAverageCalculator.cs" />
     <Compile Include="TechnicalIndicators\Models\BollingerBandsValue.cs" />
     <Compile Include="TechnicalIndicators\RelativeStrengthIndexCalculator.cs" />
     <Compile Include="TechnicalIndicators\SimpleMovingAverageCalculator.cs" />
