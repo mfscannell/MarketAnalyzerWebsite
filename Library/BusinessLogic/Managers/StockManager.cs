@@ -45,6 +45,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
                     StockChartSeriesName.BOLLINGER_BANDS,
                     StockChartSeriesName.EMA,
                     StockChartSeriesName.SMA,
+                    StockChartSeriesName.TEMA,
                     StockChartSeriesName.VWMA
                 };
             }

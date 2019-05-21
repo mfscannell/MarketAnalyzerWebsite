@@ -33,6 +33,10 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
         [EnumMember(Value = "SMA")]
         Sma,
 
+        [Description("Triple EMA")]
+        [EnumMember(Value = "Triple EMA")]
+        Tema,
+
         [Description("VWMA")]
         [EnumMember(Value = "VWMA")]
         Vwma,

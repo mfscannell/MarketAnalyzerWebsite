@@ -79,9 +79,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                     this.numberOfUpperSeriesCreated++;
                     var emaCalculator = new ExponentialMovingAverageCalculator(int.Parse(stockChartSeriesRequest.Params));
 
-                    return new SimpleMovingAverageChartSeries[1]
+                    return new ExponentialMovingAverageChartSeries[1]
                     {
-                        new SimpleMovingAverageChartSeries(
+                        new ExponentialMovingAverageChartSeries(
                             $"{stockChartSeriesRequest.Params}-Day EMA",
                             StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
                             stockHistoryData.Select(
@@ -149,6 +149,24 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                 {
                                     X = tradingDay.Date,
                                     Y = smaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
+                                }))
+                    };
+                case StockChartSeriesNameEnum.Tema:
+                    this.numberOfUpperSeriesCreated++;
+                    var temaCalculator = new TripleExponentialMovingAverageCalculator(
+                        int.Parse(stockChartSeriesRequest.Params));
+
+                    return new TripleExponentialMovingAverageChartSeries[1]
+                    {
+                        new TripleExponentialMovingAverageChartSeries(
+                            $"{stockChartSeriesRequest.Params}-Day TEMA",
+                            StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
+                            stockHistoryData.Select(
+                                tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = temaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
                                 }))
                     };
                 case StockChartSeriesNameEnum.Vwma:

@@ -61,7 +61,7 @@ $(document).ready(function () {
                         x: -3
                     },
                     title: {
-                        text: 'OHLC'
+                        text: ''
                     },
                     height: '40%',
                     lineWidth: 2,
@@ -109,7 +109,7 @@ $(document).ready(function () {
                         enabled: false
                     },
                     title: {
-                        text: tickerSymbol
+                        text: ''
                     },
                     xAxis: [{
                         min: new Date(chartBeginDate).getTime()

@@ -55,17 +55,19 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
             switch (this.Type)
             {
                 case StockChartSeriesNameEnum.BollingerBands:
-                    return BollingerBandsCalculator.ParseNumDays(this.Params) * -2;
+                    return BollingerBandsCalculator.ParseNumDays(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Ema:
-                    return int.Parse(this.Params) * -3;
+                    return int.Parse(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Price:
                     return 0;
                 case StockChartSeriesNameEnum.Rsi:
-                    return -350;
+                    return int.Parse(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Sma:
                     return int.Parse(this.Params) * -2;
+                case StockChartSeriesNameEnum.Tema:
+                    return int.Parse(this.Params) * -3 - 350;
                 case StockChartSeriesNameEnum.Vwma:
-                    return int.Parse(this.Params) * -2;
+                    return int.Parse(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Volume:
                     return 0;
                 default:
