@@ -24,6 +24,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Enums
 
         public const string TEMA = "Triple EMA";
 
+        public const string VEMA = "V-EMA";
+
         public const string VWMA = "VWMA";
 
         public const string VOLUME = "Volume";

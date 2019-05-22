@@ -169,6 +169,24 @@ namespace FinanceWebsite.Library.BusinessLogic.Factories
                                     Y = temaCalculator.CalculateMovingAverage(tradingDay.AdjClose)
                                 }))
                     };
+                case StockChartSeriesNameEnum.Vema:
+                    this.numberOfUpperSeriesCreated++;
+                    var vemaCalculator = new VolumeExponentialMovingAverageCalculator(
+                        int.Parse(stockChartSeriesRequest.Params));
+
+                    return new VolumeExponentialMovingAverageChartSeries[1]
+                    {
+                        new VolumeExponentialMovingAverageChartSeries(
+                            $"{stockChartSeriesRequest.Params}-Day VEMA",
+                            StockChartSeriesColor.UPPERS[this.numberOfUpperSeriesCreated],
+                            stockHistoryData.Select(
+                                tradingDay =>
+                                new LineSeriesDataPoint
+                                {
+                                    X = tradingDay.Date,
+                                    Y = vemaCalculator.CalculateMovingAverage(tradingDay.AdjClose, tradingDay.Volume)
+                                }))
+                    };
                 case StockChartSeriesNameEnum.Vwma:
                     this.numberOfUpperSeriesCreated++;
                     var vwmaCalculator = new VolumeWeightedMovingAverageCalculator(

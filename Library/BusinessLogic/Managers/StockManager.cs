@@ -46,6 +46,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
                     StockChartSeriesName.EMA,
                     StockChartSeriesName.SMA,
                     StockChartSeriesName.TEMA,
+                    StockChartSeriesName.VEMA,
                     StockChartSeriesName.VWMA
                 };
             }

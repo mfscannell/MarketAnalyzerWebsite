@@ -66,6 +66,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
                     return int.Parse(this.Params) * -2;
                 case StockChartSeriesNameEnum.Tema:
                     return int.Parse(this.Params) * -3 - 350;
+                case StockChartSeriesNameEnum.Vema:
+                    return int.Parse(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Vwma:
                     return int.Parse(this.Params) * -2 - 350;
                 case StockChartSeriesNameEnum.Volume:

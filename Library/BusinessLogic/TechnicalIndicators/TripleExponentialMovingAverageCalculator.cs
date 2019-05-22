@@ -12,12 +12,6 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 
         private double[] values;
 
-        private double[] emas;
-
-        private double[] doubleEmas;
-
-        private int indexOfOldestValue;
-
         private int numValuesInserted;
 
         private double ema1;
@@ -25,8 +19,6 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         private double ema2;
 
         private double ema3;
-
-        private double multiplier;
 
         private ExponentialMovingAverageCalculator ema1Calculator;
 
@@ -41,14 +33,10 @@ namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
         public TripleExponentialMovingAverageCalculator(int numRecords)
         {
             this.values = new double[numRecords];
-            this.emas = new double[numRecords];
-            this.doubleEmas = new double[numRecords];
-            this.indexOfOldestValue = 0;
             this.numValuesInserted = 0;
             this.ema1 = 0;
             this.ema2 = 0;
             this.ema3 = 0;
-            this.multiplier = 2.0 / (numRecords + 1);
 
             this.ema1Calculator = new ExponentialMovingAverageCalculator(numRecords);
             this.ema2Calculator = new ExponentialMovingAverageCalculator(numRecords);

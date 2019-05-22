@@ -112,7 +112,8 @@ $(document).ready(function () {
                         text: ''
                     },
                     xAxis: [{
-                        min: new Date(chartBeginDate).getTime()
+                        min: new Date(chartBeginDate).getTime(),
+                        offset: -0.41*900
                     }],
                     yAxis: yAxis,
                     tooltip: {
