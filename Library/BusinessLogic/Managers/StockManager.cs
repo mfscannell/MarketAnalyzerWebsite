@@ -71,14 +71,18 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
         {
             var stockHistory = await this.stockHistoryClient.GetPriceAsync(
                 request.StockHistoryDataRequest.TickerSymbol, 
-                request.StockHistoryDataRequest.DataBeginDate,
-                request.StockHistoryDataRequest.DataEndDate);
+                request.StockHistoryDataRequest.BeginDate.AddDays(
+                    request.StockChartSeriesRequest.Select(series => series.GetNumPreviousCalendarDays()).Min()),
+                request.StockHistoryDataRequest.EndDate.AddDays(1));
             
             var chartSeriesFactory = new StockChartSeriesFactory();
 
             var stockChartSeries = request.StockChartSeriesRequest.SelectMany(
                 chartSeriesRequest => chartSeriesFactory.GenerateChartSeries(
-                        chartSeriesRequest, stockHistory));
+                        chartSeriesRequest, 
+                        stockHistory,
+                        request.StockHistoryDataRequest.BeginDate,
+                        request.StockHistoryDataRequest.EndDate));
 
             return stockChartSeries;
         }

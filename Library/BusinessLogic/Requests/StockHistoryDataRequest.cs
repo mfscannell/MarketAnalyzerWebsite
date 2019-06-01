@@ -8,13 +8,9 @@ namespace FinanceWebsite.Library.BusinessLogic.Requests
 {
     public class StockHistoryDataRequest
     {
-        public DateTime ChartBeginDate { get; set; }
+        public DateTime BeginDate { get; set; }
 
-        public DateTime ChartEndDate { get; set; }
-
-        public DateTime DataBeginDate { get; set; }
-
-        public DateTime DataEndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string TickerSymbol { get; set; }
     }

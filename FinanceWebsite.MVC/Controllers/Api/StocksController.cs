@@ -42,21 +42,12 @@ namespace FinanceWebsite.MVC.Controllers.Api
             var parsedUppers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(uppers);
             var parsedLowers = JsonConvert.DeserializeObject<List<StockChartSeriesRequest>>(lowers);
 
-            var smallestUpper = parsedUppers.Count == 0
-                ? 0
-                : parsedUppers.Select(upper => upper.GetNumPreviousCalendarDays()).Min();
-            var smallestLower = parsedLowers.Count == 0
-                ? 0
-                : parsedLowers.Select(lower => lower.GetNumPreviousCalendarDays()).Min();
-
             var request = new StockChartRequest
             {
                 StockHistoryDataRequest = new StockHistoryDataRequest
                 {
-                    ChartBeginDate = beginDate,
-                    ChartEndDate = endDate,
-                    DataBeginDate = beginDate.AddDays(Math.Min(smallestLower, smallestUpper)),
-                    DataEndDate = endDate.AddDays(1),
+                    BeginDate = beginDate,
+                    EndDate = endDate,
                     TickerSymbol = tickerSymbol
                 },
                 StockChartSeriesRequest = new List<StockChartSeriesRequest>
