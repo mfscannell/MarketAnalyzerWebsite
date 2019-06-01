@@ -1,4 +1,3 @@
-C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.csprojAssemblyReference.cache
 C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.csproj.CoreCompileInputs.cache
 C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.csproj.CopyComplete
 C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.StockClient.dll

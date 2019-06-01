@@ -1,5 +1,6 @@
 ﻿var FinanceDataServiceClient = (function () {
-    var baseUrl = 'http://localhost:63993/dataApi';
+    //var baseUrl = 'http://localhost:63993/dataApi';
+    var baseUrl = '/api';
 
     var formatTechnicalIndicators = function(technicalIndicators) {
         var params = '['
