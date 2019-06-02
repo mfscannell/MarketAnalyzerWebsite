@@ -4,3 +4,4 @@ C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.StockClient.dll
 C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.StockClient.pdb
 C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.dll
 C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.pdb
+C:\eecsCSharp\FinanceWebsite\StockClient\obj\Debug\FinanceWebsite.StockClient.csprojAssemblyReference.cache

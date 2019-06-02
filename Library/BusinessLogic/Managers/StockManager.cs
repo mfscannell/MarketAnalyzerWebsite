@@ -11,6 +11,7 @@ using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 
 using FinanceWebsite.StockClient.Generic;
 using FinanceWebsite.StockClient.YahooClient;
+using FinanceWebsite.DataAccess.Generic;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -23,13 +24,22 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
 
         private IGetStockHistory stockHistoryClient;
 
+        private IDataAccess dataAccess;
+
         #endregion
 
         #region Constructors and Destructors
 
-        public StockManager(IGetStockHistory stockHistoryClient)
+        public StockManager(IGetStockHistory stockHistoryClient, IDataAccess dataAccess)
         {
             this.stockHistoryClient = stockHistoryClient;
+            this.dataAccess = dataAccess;
+        }
+
+        public void Dispose()
+        {
+            this.dataAccess.CloseConnection();
+            this.dataAccess.Dispose();
         }
 
         #endregion
@@ -74,7 +84,7 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
                 request.StockHistoryDataRequest.BeginDate.AddDays(
                     request.StockChartSeriesRequest.Select(series => series.GetNumPreviousCalendarDays()).Min()),
                 request.StockHistoryDataRequest.EndDate.AddDays(1));
-            
+
             var chartSeriesFactory = new StockChartSeriesFactory();
 
             var stockChartSeries = request.StockChartSeriesRequest.SelectMany(

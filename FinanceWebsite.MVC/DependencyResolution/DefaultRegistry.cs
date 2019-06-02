@@ -22,6 +22,8 @@ namespace FinanceWebsite.MVC.DependencyResolution {
     using FinanceWebsite.StockClient.Generic;
     using FinanceWebsite.StockClient.YahooClient;
     using FinanceWebsite.Library.BusinessLogic.Managers;
+    using FinanceWebsite.DataAccess.Generic;
+    using FinanceWebsite.DataAccess.Dapper;
 
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -34,6 +36,7 @@ namespace FinanceWebsite.MVC.DependencyResolution {
                 });
             For<IStockManager>().Use<StockManager>();
             For<IGetStockHistory>().Use<YahooStockClient>();
+            For<IDataAccess>().Use<DapperDataAccess>();
         }
 
         #endregion

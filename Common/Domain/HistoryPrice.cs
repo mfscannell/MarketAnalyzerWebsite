@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceWebsite.StockClient.Models
+namespace FinanceWebsite.Common.Domain
 {
     public class HistoryPrice
     {

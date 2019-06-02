@@ -170,3 +170,7 @@ C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\Microsoft.Practices.ServiceL
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\StructureMap.pdb
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\StructureMap.Net4.pdb
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\StructureMap.Web.pdb
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Common.Domain.dll
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Common.Domain.pdb
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.DataAccess.dll
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.DataAccess.pdb

@@ -1,0 +1,6 @@
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Common.Domain.dll
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Common.Domain.pdb
+C:\eecsCSharp\FinanceWebsite\Common\Domain\obj\Debug\FinanceWebsite.Common.Domain.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\Common\Domain\obj\Debug\FinanceWebsite.Common.Domain.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\Common\Domain\obj\Debug\FinanceWebsite.Common.Domain.dll
+C:\eecsCSharp\FinanceWebsite\Common\Domain\obj\Debug\FinanceWebsite.Common.Domain.pdb

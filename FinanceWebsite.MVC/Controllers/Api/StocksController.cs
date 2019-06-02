@@ -68,6 +68,7 @@ namespace FinanceWebsite.MVC.Controllers.Api
             request.StockChartSeriesRequest.AddRange(parsedUppers);
             request.StockChartSeriesRequest.AddRange(parsedLowers);
             var result = await this.stockManager.GetStockChartSeries(request);
+            this.stockManager.Dispose();
 
             return result;
         }

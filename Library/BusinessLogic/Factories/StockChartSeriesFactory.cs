@@ -11,7 +11,7 @@ using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries.DataPoints;
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 
-using FinanceWebsite.StockClient.Models;
+using FinanceWebsite.Common.Domain;
 
 namespace FinanceWebsite.Library.BusinessLogic.Factories
 {

@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FinanceWebsite.DataAccess">
+      <HintPath>..\Build\FinanceWebsite.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="FinanceWebsite.Library.BusinessLogic">
       <HintPath>..\Build\FinanceWebsite.Library.BusinessLogic.dll</HintPath>
     </Reference>

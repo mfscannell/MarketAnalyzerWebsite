@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FinanceWebsite.Common.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Build\FinanceWebsite.Common.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="FinanceWebsite.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Build\FinanceWebsite.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="FinanceWebsite.StockClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Build\FinanceWebsite.StockClient.dll</HintPath>

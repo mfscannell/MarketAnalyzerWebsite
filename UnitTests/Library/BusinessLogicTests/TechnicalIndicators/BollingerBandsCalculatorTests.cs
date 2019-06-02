@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators;
 
-using FinanceWebsite.StockClient.Models;
+using FinanceWebsite.Common.Domain;
 
 namespace UnitTests.FinanceWebsite.Library.BusinessLogicTests.TechnicalIndicators
 {

@@ -11,6 +11,8 @@ namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
     public interface IStockManager
     {
+        void Dispose();
+
         Task<IEnumerable<ChartSeries>> GetStockChartSeries(StockChartRequest request);
     }
 }

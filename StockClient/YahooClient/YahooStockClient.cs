@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FinanceWebsite.StockClient.Generic;
-using FinanceWebsite.StockClient.Models;
+using FinanceWebsite.Common.Domain;
 using FinanceWebsite.StockClient.Utils;
 
 namespace FinanceWebsite.StockClient.YahooClient

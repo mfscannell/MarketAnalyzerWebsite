@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using FinanceWebsite.Library.BusinessLogic.TechnicalIndicators.Models;
 
-using FinanceWebsite.StockClient.Models;
+using FinanceWebsite.Common.Domain;
 
 namespace FinanceWebsite.Library.BusinessLogic.TechnicalIndicators
 {

@@ -1,0 +1,7 @@
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.DataAccess.dll
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.DataAccess.pdb
+C:\eecsCSharp\FinanceWebsite\DataAccess\obj\Debug\FinanceWebsite.DataAccess.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\DataAccess\obj\Debug\FinanceWebsite.DataAccess.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\DataAccess\obj\Debug\FinanceWebsite.DataAccess.csproj.CopyComplete
+C:\eecsCSharp\FinanceWebsite\DataAccess\obj\Debug\FinanceWebsite.DataAccess.dll
+C:\eecsCSharp\FinanceWebsite\DataAccess\obj\Debug\FinanceWebsite.DataAccess.pdb
