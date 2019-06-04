@@ -49,8 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dapper\DapperDataAccess.cs" />
+    <Compile Include="Dapper\DapperStockPriceDataAccess.cs" />
+    <Compile Include="Dapper\DapperUserDataAccess.cs" />
     <Compile Include="Generic\IDataAccess.cs" />
     <Compile Include="Generic\IStockPriceDataAccess.cs" />
+    <Compile Include="Generic\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

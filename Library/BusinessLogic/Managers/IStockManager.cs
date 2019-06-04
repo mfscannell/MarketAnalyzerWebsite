@@ -9,10 +9,8 @@ using FinanceWebsite.Library.BusinessLogic.Responses.ChartSeries;
 
 namespace FinanceWebsite.Library.BusinessLogic.Managers
 {
-    public interface IStockManager
+    public interface IStockManager : IManager
     {
-        void Dispose();
-
         Task<IEnumerable<ChartSeries>> GetStockChartSeries(StockChartRequest request);
     }
 }

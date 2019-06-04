@@ -11,5 +11,9 @@ namespace FinanceWebsite.DataAccess.Generic
         void CloseConnection();
 
         void Dispose();
+
+        IStockPriceDataAccess GetStockPriceDataAccess();
+
+        IUserDataAccess GetUserDataAccess();
     }
 }

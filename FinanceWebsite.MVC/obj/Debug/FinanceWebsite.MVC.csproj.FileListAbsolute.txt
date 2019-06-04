@@ -174,3 +174,5 @@ C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Common.Domain
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.Common.Domain.pdb
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.DataAccess.dll
 C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\FinanceWebsite.DataAccess.pdb
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\Dapper.dll
+C:\eecsCSharp\FinanceWebsite\FinanceWebsite.MVC\bin\Dapper.xml

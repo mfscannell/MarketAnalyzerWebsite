@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceWebsite.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceWebsite.Common.Domain", "Common\Domain\FinanceWebsite.Common.Domain.csproj", "{7A61A939-0F4D-4DFB-A52D-4B7ACEAE7022}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceWebsite.DatabaseDeploy", "DatabaseDeploy\FinanceWebsite.DatabaseDeploy.csproj", "{0F85C5A7-B5B3-4CCB-93CA-F90D26AB6DBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceWebsite.Common.Core", "Common\Core\FinanceWebsite.Common.Core.csproj", "{2513D889-F9BA-4AA1-BB08-FF0E35E173BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{7A61A939-0F4D-4DFB-A52D-4B7ACEAE7022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A61A939-0F4D-4DFB-A52D-4B7ACEAE7022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A61A939-0F4D-4DFB-A52D-4B7ACEAE7022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F85C5A7-B5B3-4CCB-93CA-F90D26AB6DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F85C5A7-B5B3-4CCB-93CA-F90D26AB6DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F85C5A7-B5B3-4CCB-93CA-F90D26AB6DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F85C5A7-B5B3-4CCB-93CA-F90D26AB6DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2513D889-F9BA-4AA1-BB08-FF0E35E173BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2513D889-F9BA-4AA1-BB08-FF0E35E173BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2513D889-F9BA-4AA1-BB08-FF0E35E173BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2513D889-F9BA-4AA1-BB08-FF0E35E173BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

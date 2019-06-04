@@ -1,0 +1,6 @@
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Common.Core.dll
+C:\eecsCSharp\FinanceWebsite\Build\FinanceWebsite.Common.Core.pdb
+C:\eecsCSharp\FinanceWebsite\Common\Core\obj\Debug\FinanceWebsite.Common.Core.csprojAssemblyReference.cache
+C:\eecsCSharp\FinanceWebsite\Common\Core\obj\Debug\FinanceWebsite.Common.Core.csproj.CoreCompileInputs.cache
+C:\eecsCSharp\FinanceWebsite\Common\Core\obj\Debug\FinanceWebsite.Common.Core.dll
+C:\eecsCSharp\FinanceWebsite\Common\Core\obj\Debug\FinanceWebsite.Common.Core.pdb

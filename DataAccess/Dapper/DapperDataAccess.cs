@@ -42,6 +42,16 @@ namespace FinanceWebsite.DataAccess.Dapper
             this.dapperConnection.Dispose();
         }
 
+        public IStockPriceDataAccess GetStockPriceDataAccess()
+        {
+            return new DapperStockPriceDataAccess(this.dapperConnection);
+        }
+
+        public IUserDataAccess GetUserDataAccess()
+        {
+            return new DapperUserDataAccess(this.dapperConnection);
+        }
+
         #endregion
     }
 }

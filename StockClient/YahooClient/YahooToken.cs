@@ -17,13 +17,13 @@ namespace FinanceWebsite.StockClient.YahooClient
         public static string Cookie { get; internal set; }
         public static string Crumb { get; internal set; }
 
-        #endregion Public Members
+        #endregion
 
         #region Private Members
 
         private static Regex _regexCrumb;
 
-        #endregion Private Members
+        #endregion
 
         #region Public Methods
 
@@ -57,10 +57,16 @@ namespace FinanceWebsite.StockClient.YahooClient
                     using (var stream = response.GetResponseStream())
                     {
                         if (stream != null)
+                        {
                             html = await new StreamReader(stream).ReadToEndAsync().ConfigureAwait(false);
+                        }
                     }
 
-                    if (html.Length < 5000) return false;
+                    if (html.Length < 5000)
+                    {
+                        return false;
+                    }
+
                     var crumb = await GetCrumbAsync(html).ConfigureAwait(false);
 
                     if (crumb != null)
@@ -80,7 +86,7 @@ namespace FinanceWebsite.StockClient.YahooClient
             return false;
         }
 
-        #endregion Public Methods
+        #endregion
 
         #region Private Methods
 
@@ -99,8 +105,10 @@ namespace FinanceWebsite.StockClient.YahooClient
                 {
                     //initialize on first time use
                     if (_regexCrumb == null)
+                    {
                         _regexCrumb = new Regex("CrumbStore\":{\"crumb\":\"(?<crumb>.+?)\"}",
                             RegexOptions.CultureInvariant | RegexOptions.Compiled);
+                    }
 
                     var matches = _regexCrumb.Matches(html);
 
@@ -110,7 +118,9 @@ namespace FinanceWebsite.StockClient.YahooClient
 
                         //fixed unicode character 'SOLIDUS'
                         if (crumb.Length != 11)
+                        {
                             crumb = crumb.Replace("\\u002F", "/");
+                        }
                     }
                     else
                     {
@@ -130,6 +140,6 @@ namespace FinanceWebsite.StockClient.YahooClient
             }).ConfigureAwait(false);
         }
 
-        #endregion Private Methods
+        #endregion
     }
 }

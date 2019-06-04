@@ -20,11 +20,11 @@ namespace FinanceWebsite.StockClient.YahooClient
         {
             try
             {
-                var csvData = await GetRawAsync(symbol, start, end).ConfigureAwait(false);
+                var csvData = await this.GetRawAsync(symbol, start, end).ConfigureAwait(false);
 
                 if (csvData != null)
                 {
-                    return await ParsePriceAsync(csvData).ConfigureAwait(false);
+                    return await this.ParsePriceAsync(csvData).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace FinanceWebsite.StockClient.YahooClient
                 {
                     if (!await YahooToken.RefreshAsync(symbol).ConfigureAwait(false))
                     {
-                        return await GetRawAsync(symbol, start, end).ConfigureAwait(false);
+                        return await this.GetRawAsync(symbol, start, end).ConfigureAwait(false);
                     }
                 }
 
@@ -94,7 +94,7 @@ namespace FinanceWebsite.StockClient.YahooClient
                 YahooToken.Crumb = "";
                 Debug.Print("Re-fetch token");
 
-                return await GetRawAsync(symbol, start, end).ConfigureAwait(false);
+                return await this.GetRawAsync(symbol, start, end).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
