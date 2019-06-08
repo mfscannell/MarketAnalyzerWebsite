@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace FinanceWebsite.Common.Core.Encryption.Generic
 {
-    public interface ISaltGenerator
+    public interface IPasswordUtilities
     {
         string GenerateSalt();
+
+        string HashPassword(string salt, string submittedPassword);
+
+        bool ValidatePassword(string salt, string submittedPassword, string hashedPassword);
     }
 }
